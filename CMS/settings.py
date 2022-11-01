@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     #our new app
     'blog', 
+    'post'
 ]
 
 MIDDLEWARE = [
@@ -53,6 +54,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'CMS.urls'
+
+DJANGO_SETTINGS_MODULE='CMS.settings'
 
 TEMPLATES = [
     {
