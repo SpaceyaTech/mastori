@@ -20,4 +20,9 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
+
+    #REST FRAMEWORK URLS
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/post/', include('post.api.urls','blog_api')),
 ]
+
