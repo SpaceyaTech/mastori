@@ -1,9 +1,7 @@
 
-from operator import mod
 from django.db import models
 import uuid
-from django.utils.text import slugify
-from django.db.models.signals import post_delete,pre_save
+from django.db.models.signals import post_delete
 from django.dispatch import receiver
 
 from blog.models import Author
