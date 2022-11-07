@@ -9,23 +9,34 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+<<<<<<< HEAD
 import os
+=======
+
+>>>>>>> 28f1258a1e7c9ddc56888856866106c9512a053a
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+<<<<<<< HEAD
 # Actual directory user files go to
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'mediafiles')
 
 # URL used to access the media
 MEDIA_URL = '/media/'
+=======
+>>>>>>> 28f1258a1e7c9ddc56888856866106c9512a053a
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+<<<<<<< HEAD
 SECRET_KEY = 'django-insecure-8s+z_shh(w_6hfap#$+96!@i_#t%j^xxyh_0j1%gd^xxa1v6+d'
+=======
+SECRET_KEY = 'django-insecure-0(d^jk^v&wtq5jnh4sz8a+5q_rd-w6zm(l=)n$)*2hl1mcdlqb'
+>>>>>>> 28f1258a1e7c9ddc56888856866106c9512a053a
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,12 +53,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     
     #our new app
     'blog', 
     'post',
     'rest_framework',
 
+=======
+# Adding djangorestframework to the poject
+    'rest_framework',
+>>>>>>> 28f1258a1e7c9ddc56888856866106c9512a053a
 ]
 
 MIDDLEWARE = [
@@ -61,8 +77,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'CMS.urls'
-
-DJANGO_SETTINGS_MODULE='CMS.settings'
 
 TEMPLATES = [
     {
