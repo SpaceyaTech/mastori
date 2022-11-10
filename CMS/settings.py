@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 # Adding djangorestframework to the poject
+    
     'rest_framework',
+
+    'accounts',
 ]
 
 MIDDLEWARE = [
