@@ -4,4 +4,5 @@ djangorestframework==3.14.0
 pytz==2022.6
 sqlparse==0.4.3
 tzdata==2022.6
-pillow==9.3.0
+pillow==9.3.0 #This is a Python Imaging Library, used mainly for image manipulation
+django-phone-field==1.8.1 #for handling phone number fields 
