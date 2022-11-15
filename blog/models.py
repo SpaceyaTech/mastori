@@ -5,7 +5,7 @@ class account(models.Model):
     name = models.CharField(unique=True, max_length=50)
     createdAt = models.DateField(auto_now_add=True)
     updatedAt = models.DateField(auto_now=True)
-    display_photo = models.ImageField(upload_to="path/to/avatars/", null=True, blank=True)
+    display_photo = models.ImageField(upload_to="templates/images/", null=True, blank=True)
     bio_data = models.CharField(max_length=1000)
     """
     note the user is from django builtin user model
