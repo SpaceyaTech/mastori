@@ -1,7 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-
+"""
+Substituting a custom User by extending the AbstractUser
+Making Users email unique
+Adding extra attributes that are not present in the default User model(phone_number and verification code)
+USERNAME_FIELD - changing login to use email rather than username.
+REQUIRED_FIELDS - the required fields to create a superuser
+"""
 class User(AbstractUser):
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=30, blank=True)
