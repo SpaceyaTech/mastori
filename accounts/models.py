@@ -9,7 +9,7 @@ USERNAME_FIELD - changing login to use email rather than username.
 REQUIRED_FIELDS - the required fields to create a superuser
 """
 class User(AbstractUser):
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True, max_length=50)
     phone_number = models.CharField(max_length=30, blank=True)
     verification_code = models.CharField(max_length=100, blank=True)
 
