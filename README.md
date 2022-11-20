@@ -1,6 +1,10 @@
 # Team-Rio-Django
 Backend for Team Rio Written in Django for the Space Ya Tech Project
 
+![Python](https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+![postgresql](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+
 ## Table of contents
 
 - [Overview](#overview)
