@@ -44,18 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
 # Adding djangorestframework to the poject
-    
     'rest_framework',
-
     'accounts',
-    'blog'
-
-    
-    #our new app
-    'blog', 
+    'blog',   
     'post',
-    'rest_framework',
-
+   
 ]
 
 MIDDLEWARE = [

@@ -13,6 +13,11 @@ class TestViews(TestCase):
         self.all_posts=reverse('all_posts')
         self.update_post=reverse('update_post')
         self.delete_post=reverse('delete_post')
+
+   
+
+    
+
         
 
 
