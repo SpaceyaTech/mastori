@@ -54,6 +54,8 @@ Read more on [git and GitHub](https://docs.github.com/en/get-started/quickstart/
 
 **4. Make necessary changes and commit those changes**
 > Make sure to follow steps laid out on the [README](https://github.com/SpaceyaTech/Team-Rio-Django/blob/main/README.md) file to setup the development environment on your machine
+
+> Ensure your commits are alligned with the [Commit Message Template](https://github.com/SpaceyaTech/Team-Rio-Django/wiki/Commit-Messages)
 - You can now create/modify files in the code repository in reference to the issue you were assigned.
 - Save the file.
 - On executing the command ``git status``, you'll see there are changes.
