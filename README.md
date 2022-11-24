@@ -50,7 +50,7 @@ Just so that we have all our commit messages to be more readable and sensible it
 
 In order to use PhoneNumber_field for localization option, perform the following:
 
-- Installs phonenumbers minimal metadata
+- Install phonenumber minimal metadata
 
 ```
 pip install "django-phonenumber-field[phonenumberslite]"
@@ -58,7 +58,7 @@ pip install "django-phonenumber-field[phonenumberslite]"
 
 or
 
-- Installs phonenumbers extended features (e.g. geocoding)
+- Install phonenumber extended features (e.g. geocoding)
 
 ```
 pip install "django-phonenumber-field[phonenumbers]"

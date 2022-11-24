@@ -12,7 +12,7 @@ REQUIRED_FIELDS - the required fields to create a superuser
 """
 class User(AbstractUser):
     email = models.EmailField(unique=True, max_length=50)
-    phone_number = PhoneNumberField(blank=True)
+    phone_number = PhoneNumberField(blank=True, help_text='Contact phone number', null=True)
     verification_code = models.CharField(max_length=100, blank=True)
 
     
