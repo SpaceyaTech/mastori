@@ -25,7 +25,8 @@ MEDIA_URL = '/media/'
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8s+z_shh(w_6hfap#$+96!@i_#t%j^xxyh_0j1%gd^xxa1v6+d'
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-0(d^jk^v&wtq5jnh4sz8a+5q_rd-w6zm(l=)n$)*2hl1mcdlqb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,13 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+# Adding djangorestframework to the poject
     
-    #our new app
-    'accounts',
-    'blog', 
-    'post',
     'rest_framework',
-
+    'accounts',
+    'blog',
+   'phonenumber_field',
 ]
 
 MIDDLEWARE = [
