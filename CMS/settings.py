@@ -40,9 +40,9 @@ INSTALLED_APPS = [
 # Adding djangorestframework to the poject
     
     'rest_framework',
-
     'accounts',
-    'blog'
+    'blog',
+   'phonenumber_field',
 ]
 
 MIDDLEWARE = [
