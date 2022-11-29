@@ -1,5 +1,5 @@
 from django.test import TestCase
-from  .models import User, Account
+from  accounts.models import User, Account
 from django.contrib.auth import get_user
 
 # Create your tests here.

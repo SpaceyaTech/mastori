@@ -20,17 +20,17 @@ class AccountCreate(CreateAPIView):
 class AccountDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = AccountSerializer
 
-
+ 
     def get_queryset(self, *args, **Kwargs):
         account_id = self.kwargs.get('id')                                 
         return Account.objects.get(id = account_id )                           
-  
+
     def get(self, request, *args, **kwargs):
         id = self.kwargs.get('id')
         account = self.get_queryset(id)
         serializer = AccountSerializer(account, many=False)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
+ 
     def put(self, request, *args, **kwargs):
         id = self.kwargs.get('id')
         account = self.get_queryset(id) 
@@ -62,17 +62,17 @@ class UserCreate(CreateAPIView):
 class UserDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
 
-
+   
     def get_queryset(self, *args, **Kwargs):
         user_id = self.kwargs.get('id')                                 
-        return User.objects.get(id = user_id)                           
+        return User.objects.get(id=user_id)                           
   
     def get(self, request, *args, **kwargs):
         id = self.kwargs.get('id')
         user = self.get_queryset(id)
         serializer = UserSerializer(user, many=False)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
+    
     def put(self, request, *args, **kwargs):
         id = self.kwargs.get('id')
         user = self.get_queryset(id) 
@@ -88,3 +88,4 @@ class UserDetailView(RetrieveUpdateDestroyAPIView):
         user = self.get_queryset(id) 
         user.delete()
         return Response('Deleted', status=status.HTTP_204_NO_CONTENT)
+
