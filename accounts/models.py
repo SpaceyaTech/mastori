@@ -32,4 +32,4 @@ class Account(models.Model):
     bio = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:
-        return self.name
+        return self.account_name
