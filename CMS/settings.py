@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'accounts',
     'blog',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -146,6 +147,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
 
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication', 
     ),
 
     'DEFAULT_PERMISSION_CLASSES':[
@@ -155,7 +157,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': True,
 
