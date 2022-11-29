@@ -81,3 +81,15 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 phone_number = PhoneNumberField(blank=True)
 ```
+
+## To Run and Create unittests
+
+Add your tests in the test file in the test folder which is located in the app you want to test.  
+To run all tests  
+```
+python3 manage.py test
+```
+To run tests in a particular app
+```
+python3 manage.py test [appname]
+```
