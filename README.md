@@ -81,3 +81,65 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 phone_number = PhoneNumberField(blank=True)
 ```
+
+## AUTHENTICATION
+
+For authentication you follow this instructions:
+
+- Since we are using djangorest framework. Install the django rest framework library and add it to the INSTALLED_APPS as a third party app.
+
+- Create the serializers by adding a new file in your accounts app and name it serializers.py
+
+- In the serializers file create the needed serializers in this case , UserSerializer, RegisterSerializer, AddAccountSerializer.
+
+- Create the api views in the views.py file in the accounts app. In this case the UserView, RegisterView, AddAccountView
+
+- Create the corresponding urls by creating a urls.py file in your accounts app. Make sure to include your app urls in your projects urls.py file in the following way
+
+```
+from django.urls import path, include
+
+urlpatterns = [
+    #Other patterns
+
+    path("", include("accounts.urls"))
+]
+```
+
+- Install the djangorestframework jwt library
+
+```
+pip install djangorestframework_simplejwt
+```
+
+- In your projects settings.py configure the REST_FRAMEWORK settings to use JWT and set the AUTH_HEADER_TYPE as JWT. For the access token lifetime i've set it to 1 day for testing purposes.
+
+```
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+   'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+}
+
+```
+
+- In your urls.py add the following:
+
+```
+from rest_framework_simplejwt import views as jwt_views
+
+urlpatterns = [
+    #Other patterns
+
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    ]
+
+```
+
+- Add various permissions to your apis in the views.py file.
