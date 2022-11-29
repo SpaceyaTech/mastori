@@ -22,6 +22,12 @@ class User(AbstractUser):
     def __str__(self) -> str:
         return f'{self.first_name} {self.last_name}'
 
+    def __init__(self, *args, region=None, **kwargs):
+        """
+        The function takes in a region and then sets the region to the region that was passed in when the user is created
+        """
+        super().__init__(*args, **kwargs)
+        self.region = region
 
 class Account(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)#Referencing the customized user
