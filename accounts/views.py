@@ -20,7 +20,7 @@ class UserViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
 
 
 """Api view to be used when a user first registers to the system"""
-class RegisterAccountViewSet(ModelViewSet):
+class RegisterAccountViewSet(CreateModelMixin, RetrieveModelMixin, ListModelMixin, GenericViewSet):
     queryset = Account.objects.all()
     serializer_class = UserAccountRegistrationSerializer
     permission_classes = [IsAdminUser]

@@ -44,7 +44,7 @@ class UserAccountRegistrationSerializer(serializers.ModelSerializer):
             with transaction.atomic():
                 user = User.objects.create_user(username=user['username'], first_name=user['first_name'], last_name=user['last_name'], email=user['email'], phone_number=user['phone_number'], password=password)
 
-                account = Account.objects.create(user=user, account_name=self.validated_data['account_name'], display_picture=self.validated_data['display_picture'], bio=self.validated_data['bio'])
+                account = Account.objects.create(user=user, account_name=self.validated_data['account_name'], bio=self.validated_data['bio'])
 
                 return account
                 
@@ -58,14 +58,13 @@ class AddAccountSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user_id = self.context['user_id']
         account_name = self.validated_data['account_name']
-        display_picture = self.validated_data['display_picture']
         bio = self.validated_data['bio']
 
         user = User.objects.get(pk=user_id)
 
-        account = Account.objects.create(user=user, account_name=account_name, display_picture=display_picture, bio=bio)
+        account = Account.objects.create(user=user, account_name=account_name, bio=bio)
 
         return account
     class Meta:
         model = Account
-        fields = ['id','account_name', 'display_picture', 'bio']
+        fields = ['id','account_name', 'bio']
