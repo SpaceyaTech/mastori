@@ -10,3 +10,6 @@ pytz==2022.6
 six==1.16.0
 sqlparse==0.4.3
 tzdata==2022.6
+django-phonenumber-field==7.0.0 # enables localization of phone number based on couuntry code
+django-phonenumbers
+Pillow==9.3.0
