@@ -53,7 +53,7 @@ In order to use PhoneNumber_field for localization option, perform the following
 
 - Install phonenumber minimal metadata
 
-```
+```python
 pip install "django-phonenumber-field[phonenumberslite]"
 ```
 
@@ -61,13 +61,13 @@ or
 
 - Install phonenumber extended features (e.g. geocoding)
 
-```
+```python
 pip install "django-phonenumber-field[phonenumbers]"
 ```
 
 - Add `phonenumber_field` to the list of the installed apps in your `settings.py` file INSTALLED_APPS:
 
-```
+```python
 INSTALLED_APPS = [
     # Other apps…
     "phonenumber_field",
@@ -76,7 +76,7 @@ INSTALLED_APPS = [
 
 - Model field section add the following:
 
-```
+```python
 from phonenumber_field.modelfields import PhoneNumberField
 
 phone_number = PhoneNumberField(blank=True)
@@ -86,7 +86,7 @@ phone_number = PhoneNumberField(blank=True)
 
 Add your tests in the test file in the test folder which is located in the app you want to test.  
 To run all tests  
-```
+```python
 python3 manage.py test
 ```
 To run tests in a particular app
