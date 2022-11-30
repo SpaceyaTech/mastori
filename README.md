@@ -93,3 +93,5 @@ To run tests in a particular app
 ```
 python3 manage.py test [appname]
 ```
+## Changing the site titles
+![image](https://user-images.githubusercontent.com/23496280/204856386-3105fb57-a020-47c7-a789-8943099f3e44.png)
