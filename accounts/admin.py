@@ -13,7 +13,7 @@ class CustomUserAdmin(UserAdmin):
     list_display = ('username', 'email', 'is_staff', 'is_active',)
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        ('Personal info', {'fields': ('email', 'first_name', 'last_name', 'phone_number')}),
+        ('Personal info', {'fields': ('email', 'first_name', 'last_name')}),
         ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser')}),
     )
     add_fieldsets = (
@@ -21,3 +21,4 @@ class CustomUserAdmin(UserAdmin):
     )
 
 admin.site.register(Account)
+
