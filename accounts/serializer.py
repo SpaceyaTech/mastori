@@ -7,7 +7,7 @@ from django.contrib import auth
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ( 'dob','display_picture','bio')
+        fields = ( 'name','display_picture','bio','created_at','updated_at')
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -18,7 +18,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ('url', 'email','username', 'first_name', 'last_name', 'password', 'profile','verification_code','created_at','updated_at',)
+        fields = ('url', 'email','username', 'first_name', 'last_name', 'password', 'profile','verification_code','phone_number',)
         extra_kwargs = {'password': {'write_only': True}}
      
 
@@ -39,9 +39,11 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         instance.save()
 
         
-        profile.dob = profile_data.get('dob', profile.dob)
-        profile.address = profile_data.get('display_picture', profile.display_picture)
-        profile.country = profile_data.get('bio', profile.bio)
+        profile.name = profile_data.get('name', profile.name)
+        profile.display_picture = profile_data.get('display_picture', profile.display_picture)
+        profile.bio = profile_data.get('bio', profile.bio)
+        profile.created_at = profile_data.get('created_at', profile.created_at)
+        profile.updated_at = profile_data.get('updated_at', profile.updated_at)
        
         profile.save()
 
