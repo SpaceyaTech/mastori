@@ -22,10 +22,13 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from accounts.views import UserViewSet
 from rest_framework import routers
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
 router.register(r'UserAuth', UserViewSet, 'user')
 
+#swaga UI view function for testing
 schema_view = get_schema_view(
    openapi.Info(
       title="SpaceYaTech Blog API",
@@ -38,8 +41,7 @@ schema_view = get_schema_view(
    public=True,
    permission_classes=[permissions.AllowAny],
 )
-from django.conf import settings
-from django.conf.urls.static import static
+
 
 admin.site.site_header = "SpaceYaTech CMS Admin"
 admin.site.site_title = "SpaceYaTech Admin Portal"
@@ -52,5 +54,4 @@ urlpatterns = [
     path ('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path ('api/api.json', schema_view.without_ui( cache_timeout=0), name='schema-swagger-ui'),
     path ('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-] + static(settings.MEDIA_URL,
-document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

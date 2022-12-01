@@ -97,11 +97,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'CMS.wsgi.application'
-'''
-AUTH_USER_MODEL='accounts.User'
-APP_SCHEME='blog'
-FRONTEND_URL='http://localhost:3000'
-'''
+
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -134,8 +130,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
 
-   # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    #'PAGE_SIZE': 10,
 
     'DEFAULT_AUTHENTICATION_CLASSES': (
 
