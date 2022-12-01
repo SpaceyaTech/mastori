@@ -34,7 +34,7 @@ class Account(models.Model):
     name = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    display_picture = models.ImageField(blank=True, null=True)
+    display_picture = models.ImageField(default='blank-profile-picture.png', upload_to='profile_images')
     bio = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:
