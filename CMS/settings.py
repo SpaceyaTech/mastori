@@ -159,12 +159,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST='localhost'
-EMAIL_HOST_USER=''
-EMAIL_HOST_PASSWORD=''
-EMAIL_PORT= 1025
-EMAIL_USE_TLS= False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
@@ -174,5 +168,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-CORS_ORIGIN_ALLOW_ALL = True
+
 AUTH_USER_MODEL = 'accounts.User'
