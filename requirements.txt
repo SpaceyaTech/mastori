@@ -10,3 +10,4 @@ Pillow==9.3.0
 drf-nested-routers
 djangorestframework_simplejwt
 model_bakery
+pytest-django
