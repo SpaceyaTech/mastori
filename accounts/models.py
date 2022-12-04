@@ -22,13 +22,19 @@ class User(AbstractUser):
     def __str__(self) -> str:
         return f'{self.first_name} {self.last_name}'
 
+    def __init__(self, *args, region=None, **kwargs):
+        """
+        The function takes in a region and then sets the region to the region that was passed in when the user is created
+        """
+        super().__init__(*args, **kwargs)
+        self.region = region
 
 class Account(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='account')#Referencing the customized user
     account_name = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    display_picture = models.ImageField(blank=True, null=True)
+    display_picture = models.ImageField(default='blank-profile-picture.png', upload_to='profile_images')
     bio = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:
