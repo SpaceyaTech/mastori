@@ -38,7 +38,7 @@ class User(AbstractUser):
         self.region = region
     def __str__(self):
         return "{}".format(self.email)
-    
+
     def tokens(self):
         refresh= RefreshToken.for_user(self)
 
@@ -46,6 +46,8 @@ class User(AbstractUser):
             'refresh': str(refresh),
             'access': str(refresh.access_token)
         }
+    
+  
 class Account(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='profile', on_delete=models.CASCADE)#Referencing the customized user
     name = models.CharField(max_length=50)

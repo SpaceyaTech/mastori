@@ -41,33 +41,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 # Adding djangorestframework to the poject
-    'rest_framework_simplejwt.token_blacklist',
-    'rest_framework',
+    
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist', 
+    'rest_framework.authtoken',
     'drf_yasg',
-    'corsheaders',
     'accounts',
     'blog',
    'phonenumber_field',
 ]
-SIMPLE_JWT= {
-    'ACCESS_TOKEN_LIFETIME':timedelta(hours=1),
-    'REFRESH_TOKEN_LIFETIME':timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,
-    'ALGORITHM': 'HS512',
-    'SIGNING_KEY': SECRET_KEY,
-}
-#using swagger for autentication with access token
-SWAGGER_SETTINGS = {
-'SECURITY_DEFINITIONS': {
- 'Bearer':{
-    'type':'apiKey',
-    'name':'Authorization',
-    'in':'header'
-  }
- }
-}
-#CORS_ORIGIN_ALLOW_ALL = True
+
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -127,14 +112,32 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+'''
 REST_FRAMEWORK = {
-
 
     'DEFAULT_AUTHENTICATION_CLASSES': (
 
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        
+        'rest_framework.authentication.TokenAuthentication', 
+    ),
+
+    'DEFAULT_PERMISSION_CLASSES':[
+        'rest_framework.permissions.IsAuthenticated',                 
+    ],    
+    
+}
+'''
+REST_FRAMEWORK = {
+
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        #'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+     #'rest_framework.authentication.SessionAuthentication',
+       # 'rest_framework.authentication.BasicAuthentication',
     ),
 
     'DEFAULT_PERMISSION_CLASSES':[
@@ -143,6 +146,21 @@ REST_FRAMEWORK = {
     
    'NON_FIELD_ERRORS_KEY': 'error',
     
+}
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+
+}
+SWAGGER_SETTINGS = {
+'SECURITY_DEFINITIONS': {
+ 'Bearer':{
+    'type':'apiKey',
+    'name':'Authorization',
+    'in':'header'
+  }
+ }
 }
 
 # Internationalization

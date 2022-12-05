@@ -14,21 +14,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+
 from django.urls import path, include
 from rest_framework import routers
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
 from accounts.views import UserViewSet
 from rest_framework import routers
 from django.conf import settings
 from django.conf.urls.static import static
-
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 router = routers.DefaultRouter()
-router.register(r'UserAuth', UserViewSet, 'user')
+router.register('UserAuth', UserViewSet, 'user')
 
-#swaga UI view function for testing
+
+
+admin.site.site_header = "SpaceYaTech CMS Admin"
+admin.site.site_title = "SpaceYaTech Admin Portal"
+admin.site.index_title = "Welcome to SpaceYaTech CMS"
+
 schema_view = get_schema_view(
    openapi.Info(
       title="SpaceYaTech Blog API",
@@ -42,16 +46,13 @@ schema_view = get_schema_view(
    permission_classes=[permissions.AllowAny],
 )
 
-
-admin.site.site_header = "SpaceYaTech CMS Admin"
-admin.site.site_title = "SpaceYaTech Admin Portal"
-admin.site.index_title = "Welcome to SpaceYaTech CMS"
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ApiAuth/', include(router.urls)),
     path('accounts/', include('accounts.urls')),
+
     path ('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path ('api/api.json', schema_view.without_ui( cache_timeout=0), name='schema-swagger-ui'),
     path ('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
