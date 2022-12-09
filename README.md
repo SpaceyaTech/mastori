@@ -7,7 +7,6 @@ Backend for Team Rio Written in Django for the Space Ya Tech Project
 ![postgresql](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 
 [![Django CI](https://github.com/SpaceyaTech/Team-Rio-Django/actions/workflows/django.yml/badge.svg?event=push)](https://github.com/SpaceyaTech/Team-Rio-Django/actions/workflows/django.yml)
-
 [![CI Django & Postgres Tests](https://github.com/JimmyTron/SpaceyaTech-Django-CMS/actions/workflows/django-postgres-ci.yml/badge.svg?branch=main)](https://github.com/JimmyTron/SpaceyaTech-Django-CMS/actions/workflows/django-postgres-ci.yml)
 ## Table of contents
 
