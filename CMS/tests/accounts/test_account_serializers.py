@@ -29,48 +29,6 @@ def delete_account(api_client):
 
 @pytest.mark.django_db
 class TestCreateAccount():
-    def test_if_is_admin_return_201(self, authenticate_user, create_account):
-        authenticate_user()
-        
-        account = {
-            "user": {
-                "username": "Hellen",
-                "first_name": "Hellen",
-                "last_name": "Wain",
-                "email": "email@email.com",
-                "phone_number" : "+254734343434",
-                "password": "password"
-            },
-            "confirm_password": "password",
-            "account_name": "Favourite",
-            "bio": "sdrtfgvybhj"
-        }
-
-        response = create_account(account)
-
-        assert response.status_code == status.HTTP_201_CREATED
-
-    def test_if_not_admin_return_403(self, authenticate_user, create_account):
-        authenticate_user(is_staff=False)
-
-        account = {
-            "user": {
-                "username": "Hellen",
-                "first_name": "Hellen",
-                "last_name": "Wain",
-                "email": "email@email.com",
-                "phone_number" : "+254734343434",
-                "password": "password"
-            },
-            "confirm_password": "password",
-            "account_name": "Favourite",
-            "bio": "sdrtfgvybhj"
-        }
-
-        response = create_account(account)
-
-        assert response.status_code == status.HTTP_403_FORBIDDEN
-
 
     def test_data_is_invalid_return_400(self, authenticate_user, create_account):
         authenticate_user()
@@ -94,42 +52,7 @@ class TestCreateAccount():
         assert response.status_code == status.HTTP_400_BAD_REQUEST
 
 
-@pytest.mark.django_db
-class TestListAccounts():
-    def test_if_is_admin_return_200(self, authenticate_user, api_client):
-        authenticate_user()
 
-        response = api_client.get("/register/")
-
-        assert response.status_code == status.HTTP_200_OK
-
-    
-    def test_if_is_not_admin_return_403(self, authenticate_user, api_client):
-        authenticate_user(is_staff=False)
-
-        response = api_client.get("/register/")
-
-        assert response.status_code == status.HTTP_403_FORBIDDEN
-
-@pytest.mark.django_db
-class TestRetrieveAccount():
-    def test_if_is_admin_return_200(self, authenticate_user, api_client):
-        authenticate_user()
-
-        account = baker.make(Account)
-
-        response = api_client.get(f"/register/{account.id}/")
-
-        assert response.status_code == status.HTTP_200_OK
-
-    def test_if_is_not_admin_return_403(self, authenticate_user, api_client):
-        authenticate_user(is_staff=False)
-
-        account = baker.make(Account)
-
-        response = api_client.get(f"/register/{account.id}/")
-
-        assert response.status_code == status.HTTP_403_FORBIDDEN
 
 @pytest.mark.django_db
 class TestUpdateAccount():
