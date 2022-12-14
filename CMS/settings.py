@@ -141,5 +141,6 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-   'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'AUTH_HEADERS': 'JWT',
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
 }
