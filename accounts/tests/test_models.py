@@ -16,7 +16,7 @@ class AccountTestCase(TestCase):
     
     def test_account_create(self):
         user  = User.objects.create(username='TeamRio',email = 'teamrio@space.com',first_name = 'Team',last_name = 'Rio')
-        account = Account.objects.create (user=user, name = 'space')
+        account = Account.objects.create (user=user, account_name = 'space')
         account.save()
         
         self.assertEqual(str(account),"space")
