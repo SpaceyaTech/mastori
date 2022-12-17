@@ -14,7 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+
+from django.urls import path, include
+from rest_framework_simplejwt import views as jwt_views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -24,5 +26,15 @@ admin.site.index_title = "Welcome to SpaceYaTech CMS"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+
+
+    path("", include("accounts.urls"))
 ] + static(settings.MEDIA_URL,
 document_root=settings.MEDIA_ROOT)
+
+admin.site.site_header = "SpaceYaTech CMS Admin"
+admin.site.site_title = "SpaceYaTech Admin Portal"
+admin.site.index_title = "Welcome to SpaceYaTech CMS"
