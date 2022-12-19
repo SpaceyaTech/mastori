@@ -6,3 +6,7 @@ sqlparse==0.4.3
 tzdata==2022.6
 django-phonenumber-field==7.0.0 # enables localization of phone number based on couuntry code
 Pillow==9.3.0
+drf-nested-routers
+djangorestframework_simplejwt
+model_bakery
+pytest-django

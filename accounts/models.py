@@ -35,9 +35,8 @@ class User(AbstractUser):
 
 class Account(models.Model):
     # Referencing the customized user
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='account')#Referencing the customized user
+    account_name = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     display_picture = models.ImageField(
@@ -45,4 +44,5 @@ class Account(models.Model):
     bio = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:
-        return self.name
+        return self.account_name
+
