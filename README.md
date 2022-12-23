@@ -97,7 +97,7 @@ For authentication you follow this instructions:
 
 - Create the corresponding urls by creating a urls.py file in your accounts app. Make sure to include your app urls in your projects urls.py file in the following way
 
-```
+```python
 from django.urls import path, include
 
 urlpatterns = [
@@ -109,13 +109,13 @@ urlpatterns = [
 
 - Install the djangorestframework jwt library
 
-```
+```python
 pip install djangorestframework_simplejwt
 ```
 
 - In your projects settings.py configure the REST_FRAMEWORK settings to use JWT and set the AUTH_HEADER_TYPE as JWT. For the access token lifetime i've set it to 1 day for testing purposes.
 
-```
+```python
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -131,7 +131,7 @@ SIMPLE_JWT = {
 
 - In your urls.py add the following:
 
-```
+```python
 from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
@@ -153,7 +153,7 @@ To run all tests
 python3 manage.py test
 ```
 To run tests in a particular app
-```
+```python
 python3 manage.py test [appname]
 ```
 ## Changing the site titles
