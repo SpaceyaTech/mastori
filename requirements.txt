@@ -14,7 +14,6 @@ pytz==2022.6
 sqlparse==0.4.3
 tomli==2.0.1
 tzdata==2022.6
-
 drf-nested-routers
 djangorestframework_simplejwt
 model_bakery
