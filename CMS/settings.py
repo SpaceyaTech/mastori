@@ -38,12 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-# Adding djangorestframework to the poject
-    
+    # Adding djangorestframework to the poject
+
     'rest_framework',
     'accounts',
     'blog',
-   'phonenumber_field',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -125,10 +125,12 @@ PHONENUMBER_DEFAULT_REGION = 'KE'
 
 STATIC_URL = 'static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media'
+
+                          # Default primary key field type
+                          # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+                          )
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
