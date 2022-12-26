@@ -34,17 +34,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
     # Adding djangorestframework to the poject
-    "rest_framework",
-    "accounts",
-    "blog",
-    "phonenumber_field",
+
+    'rest_framework',
+    'accounts',
+    'blog',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -135,6 +136,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 
+
 AUTH_USER_MODEL = 'accounts.User'
 
 REST_FRAMEWORK = {
@@ -147,4 +149,3 @@ SIMPLE_JWT = {
     'AUTH_HEADERS': 'JWT',
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
 }
-
