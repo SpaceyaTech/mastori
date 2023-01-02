@@ -159,3 +159,28 @@ python3 manage.py test [appname]
 ## Changing the site titles
 ![image](https://user-images.githubusercontent.com/23496280/204856386-3105fb57-a020-47c7-a789-8943099f3e44.png)
 
+## Creating the blog Api
+
+The blog api **{{baseurl}}/blog/**
+shows a list of all available blog posts (Stori/Mastori)
+The model naming is abitrary and can be subject to change if need be
+Ther is also need to filter out the various blogposts in relation ti their tittle or date posted hence the filter
+
+![Screenshot from 2023-01-03 00-59-16](https://user-images.githubusercontent.com/23496280/210282497-96bb8b6f-544d-4454-8b01-e3aea9b8745d.png)
+
+## Blog admin
+
+Here the implementation is more similar to the api but for the admin the search fields are title and content
+```python
+  search_fields = ['title', 'content']
+```
+theres also an addition of a slug field this is in anticipation of creation of the detail view 
+the slug could be used to generate more elaborate urls for specific blogposts (mastori)
+Filtering has also been implemented here by filtering on the basis of the post ststus
+```python
+ list_filter = ("status",)
+ ```
+ here a post is either a draft or published
+
+![Screenshot from 2023-01-03 01-00-46](https://user-images.githubusercontent.com/23496280/210282501-cfb7ebf1-c95b-48c2-96dc-407000045a00.png)
+
