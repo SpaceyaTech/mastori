@@ -10,3 +10,4 @@ drf-nested-routers
 djangorestframework_simplejwt
 model_bakery
 pytest-django
+django-filter==22.1
