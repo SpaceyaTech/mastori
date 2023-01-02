@@ -1,5 +1,11 @@
 from django.contrib import admin
-from .models import Blogpost
+from blog.models import Stori
 
 # Register your models here.
-admin.site.register(Blogpost)
+class StoriAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'status','created_at')
+    list_filter = ("status",)
+    search_fields = ['title', 'content']
+    prepopulated_fields = {'slug': ('title',)}
+
+admin.site.register(Stori, StoriAdmin)

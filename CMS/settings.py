@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'accounts',
     'blog',
     'phonenumber_field',
+    #Adding the django filters module
+    'django_filters', 
 ]
 
 MIDDLEWARE = [
