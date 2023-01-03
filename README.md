@@ -24,7 +24,10 @@ Backend for Team Rio Written in Django for the Space Ya Tech Project
 The SpaceYaTech Content Management system is an open-application that lets users to quickly publish content and share it with ease to their audience. Inspired by existing CMSes like Hashnode, Wordpress, DEV and Joomla, we felt the need to create an African CMS created by young Africans looking to learn by contributing to Open Source. SpaceYaTech opted for a CMS as the debut open source project because of the technicalities involved in creating, maintaining and scaling a CMS. A CMS poses great technical challenges and a great learning opportunity for those looking to grow their tech skills.
 For a more detailed overview of the project, read through the [CMS Backend wiki](https://github.com/SpaceyaTech/CMS-Backend-Repository/wiki)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 67079fa (Update README)
 ## Contribution guide
 
 Get to read the [Contributions guide](https://github.com/SpaceyaTech/Team-Rio-Django/blob/main/contributions.md) here.
@@ -139,7 +142,10 @@ To run all tests
 python3 manage.py test
 ```
 To run tests in a particular app
+<<<<<<< HEAD
 
+=======
+>>>>>>> 67079fa (Update README)
 ```bash
 python3 manage.py test [appname]
 ```
