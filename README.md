@@ -11,8 +11,6 @@ Backend for Team Rio Written in Django for the Space Ya Tech Project
 ## Table of contents
 
 - [Overview](#overview)
-- [Product vision](#product-vision)
-  - [Vision Abstract](#vision-abstract)
 - [Contributing](#contribution-guide)
 - [Commit message](#commit-message-template)
 
@@ -20,25 +18,6 @@ Backend for Team Rio Written in Django for the Space Ya Tech Project
 
 The SpaceYaTech Content Management system is an open-application that lets users to quickly publish content and share it with ease to their audience. Inspired by existing CMSes like Hashnode, Wordpress, DEV and Joomla, we felt the need to create an African CMS created by young Africans looking to learn by contributing to Open Source. SpaceYaTech opted for a CMS as the debut open source project because of the technicalities involved in creating, maintaining and scaling a CMS. A CMS poses great technical challenges and a great learning opportunity for those looking to grow their tech skills.
 For a more detailed overview of the project, read through the [CMS Backend wiki](https://github.com/SpaceyaTech/CMS-Backend-Repository/wiki)
-
-## Product Vision
-
-## Vision Abstract
-
-As a user interested in technology space in Kenya, I should be able to use the application to find meaningful discussions on the tech ecosystem in Africa. The SpaceYaTech Forum should provide users with the opportunity to join communities, make posts, up-vote other people's posts, comment on posts, down-vote posts they don't like and report posts which don't abide by the community standards.
-
-## Target Group
-
-Young people interested in keeping in touch with what's happening in the tech space within Africa and other relevant topics which will boost their careers.
-
-## Concrete Product Vision
-
-**FOR**: young Africans interested in technology discussions in Africa
-**WHO**: want to find opinions and news about various topics in Africa
-**THE**: Space Ya Tech IS A web application
-**THAT**: gives a platform to young people to interact on different technology matters
-**UNLIKE**: other existing products which already exist in the market
-**OUR PRODUCT**: is open source and developed by the community for the community addressing the pain points of the African tech ecosystem.
 
 ## Contribution guide
 
@@ -54,7 +33,7 @@ In order to use PhoneNumber_field for localization option, perform the following
 
 - Install phonenumber minimal metadata
 
-```python
+```bash
 pip install "django-phonenumber-field[phonenumberslite]"
 ```
 
@@ -62,7 +41,7 @@ or
 
 - Install phonenumber extended features (e.g. geocoding)
 
-```python
+```bash
 pip install "django-phonenumber-field[phonenumbers]"
 ```
 
@@ -77,7 +56,7 @@ INSTALLED_APPS = [
 
 - Model field section add the following:
 
-```python
+```pythonpython
 from phonenumber_field.modelfields import PhoneNumberField
 
 phone_number = PhoneNumberField(blank=True)
@@ -154,7 +133,7 @@ To run all tests
 python3 manage.py test
 ```
 To run tests in a particular app
-```
+```bash
 python3 manage.py test [appname]
 ```
 ## Changing the site titles
