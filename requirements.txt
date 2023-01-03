@@ -11,3 +11,4 @@ djangorestframework_simplejwt
 model_bakery
 pytest-django
 django-filter==22.1
+phonenumbers==8.13.0
