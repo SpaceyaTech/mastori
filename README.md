@@ -41,7 +41,7 @@ In order to use **PhoneNumber_field** for localization option, perform the follo
 
 - Install phonenumber minimal metadata
 
-```python
+```bash
 pip install "django-phonenumber-field[phonenumberslite]"
 ```
 
@@ -49,7 +49,7 @@ or
 
 - Install phonenumber extended features (e.g. geocoding)
 
-```python
+```bash
 pip install "django-phonenumber-field[phonenumbers]"
 ```
 
@@ -64,7 +64,7 @@ INSTALLED_APPS = [
 
 - Model field section add the following:
 
-```python
+```pythonpython
 from phonenumber_field.modelfields import PhoneNumberField
 
 phone_number = PhoneNumberField(blank=True)
