@@ -45,4 +45,7 @@ class Account(models.Model):
 
     def __str__(self) -> str:
         return self.account_name
+    
+    class Meta:
+        app_label = 'auth'
 
