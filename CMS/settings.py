@@ -44,8 +44,11 @@ INSTALLED_APPS = [
     'accounts',
     'blog',
     'phonenumber_field',
+    #Adding the django filters module
+    'django_filters', 
     # for blacklisting used refresh token
     'rest_framework_simplejwt.token_blacklist',
+
 ]
 
 MIDDLEWARE = [
