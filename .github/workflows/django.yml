@@ -3,8 +3,10 @@ name: Django CI
 on:
   push:
     branches: 
+
     - main
     - blog-lab4
+
   pull_request:
     branches: [ "main" ]
 
