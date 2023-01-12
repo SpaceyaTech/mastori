@@ -23,7 +23,7 @@ The [Discussions](https://github.com/SpaceyaTech/Team-Rio-Django/discussions) is
 - This will create a copy of this repository in your account.
 
 
-**2. clone the repository**
+**2. Clone the repository**
 - Now clone the repo to your machine
 - Click on the clone button and then click the copy to clipboard icon.
 - Open a terminal( bash on linux/mac, command prompt on windows) and run the following git command: ```git clone "url you just copied" ``` 
@@ -53,7 +53,7 @@ Read more on [git and GitHub](https://docs.github.com/en/get-started/quickstart/
 > Note the branch needs to show issue, number and title
 
 **4. Create a Virtual Environment**
-It is suggested to have a dedicated virtual environment for each Django project, and one way to manage a virtual environment is [pipenv](https://pypi.org/project/pipenv/) or venv, which is included in [Python](https://www.python.org/).
+> It is suggested to have a dedicated virtual environment for each Django project, and one way to manage a virtual environment is [pipenv](https://pypi.org/project/pipenv/) or venv, which is included in [Python](https://www.python.org/).
 
 With venv, you can create a virtual environment by typing this in the command prompt, remember to navigate to where you want to create your project.
 
