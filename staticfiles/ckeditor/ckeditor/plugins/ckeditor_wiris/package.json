@@ -1,0 +1,57 @@
+{
+  "_from": "file:wiris-mathtype-ckeditor4-7.16.1.tgz",
+  "_id": "@wiris/mathtype-ckeditor4@7.16.1",
+  "_inBundle": false,
+  "_integrity": "sha512-mx9U3UNWH6mzaGoNcHGXoIEMEAnI0QZnxuyuSl5h5STXzObaHv2NDb3zcDxqCXZobu5rhlKmCXbXW9A1bavD6Q==",
+  "_location": "/@wiris/mathtype-ckeditor4",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "file",
+    "where": "/var/www/html/plugin/3.50/npm-ckeditor4",
+    "raw": "wiris-mathtype-ckeditor4-7.16.1.tgz",
+    "rawSpec": "wiris-mathtype-ckeditor4-7.16.1.tgz",
+    "saveSpec": "file:wiris-mathtype-ckeditor4-7.16.1.tgz",
+    "fetchSpec": "/var/www/html/plugin/3.50/npm-ckeditor4/wiris-mathtype-ckeditor4-7.16.1.tgz"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "/var/www/html/plugin/3.50/npm-ckeditor4/wiris-mathtype-ckeditor4-7.16.1.tgz",
+  "_shasum": "2e928aa0de371a361373870c3b3ed90599621196",
+  "_spec": "wiris-mathtype-ckeditor4-7.16.1.tgz",
+  "_where": "/var/www/html/plugin/3.50/npm-ckeditor4",
+  "author": {
+    "name": "WIRIS Team",
+    "url": "http://www.wiris.com"
+  },
+  "bugs": {
+    "email": "support@wiris.com"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "MathType Web for CKEditor4 editor",
+  "files": [
+    "icons"
+  ],
+  "homepage": "http://www.wiris.com/",
+  "keywords": [
+    "ckeditor",
+    "ckeditor4",
+    "chem",
+    "chemistry",
+    "chemtype",
+    "editor",
+    "equation",
+    "latex",
+    "math",
+    "maths",
+    "mathml",
+    "mathtype",
+    "wiris"
+  ],
+  "license": "GPL-3.0",
+  "main": "plugin.js",
+  "name": "@wiris/mathtype-ckeditor4",
+  "version": "7.16.1"
+}
