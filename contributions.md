@@ -53,7 +53,9 @@ Read more on [git and GitHub](https://docs.github.com/en/get-started/quickstart/
 > Note the branch needs to show issue, number and title
 
 **4. Create a Virtual Environment**
+
 > It is suggested to have a dedicated virtual environment for each Django project, and one way to manage a virtual environment is [pipenv](https://pypi.org/project/pipenv/) or venv, which is included in [Python](https://www.python.org/).
+
 
 With venv, you can create a virtual environment by typing this in the command prompt, remember to navigate to where you want to create your project.
 
