@@ -2,7 +2,8 @@ from django.db.models import Count
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
-
+from rest_framework.throttling import UserRateThrottle 
+from .throttles import AccountsRateThrottle
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -14,6 +15,7 @@ from .models import *
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    throttle_classes = [UserRateThrottle, AccountsRateThrottle]
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
@@ -27,6 +29,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
+    throttle_classes = [UserRateThrottle, AccountsRateThrottle]
     serializer_class = MyTokenObtainPairSerializer
 
 
@@ -36,7 +39,8 @@ class MyTokenObtainPairView(TokenObtainPairView):
 class UserViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
     serializer_class = UserSerializer
     permission_classes = [IsAdminUser]
-
+    throttle_classes = [UserRateThrottle, AccountsRateThrottle]
+    
     def get_queryset(self):
         if self.request.method == 'GET':
             # Adds a new column that counts the number of accounts.
@@ -50,6 +54,7 @@ class UserViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
 class RegisterAccountViewSet(CreateModelMixin, GenericViewSet):
     queryset = Account.objects.all()
     serializer_class = UserAccountRegistrationSerializer
+    throttle_classes = [UserRateThrottle, AccountsRateThrottle]
 
 
 """Api view for a user to add another new account"""
@@ -58,6 +63,7 @@ class RegisterAccountViewSet(CreateModelMixin, GenericViewSet):
 class AddUserAccountViewSet(ModelViewSet):
     serializer_class = AddAccountSerializer
     permission_classes = [IsAuthenticated]
+    throttle_classes = [UserRateThrottle, AccountsRateThrottle]
 
     def get_serializer_context(self):
         return {'user_id': self.kwargs['user_pk']}
