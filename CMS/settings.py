@@ -145,6 +145,17 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.UserRateThrottle',
+        'blog.throttles.BlogRateThrottle',
+        'accounts.throttles.AccountsRateThrottle'
+
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'user': '200/day',
+        'blog': '100/day',
+        'accounts': '50/day'
+    }
 }
 
 SIMPLE_JWT = {
