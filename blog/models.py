@@ -1,6 +1,9 @@
 from django.db import models
 from accounts.models import Account
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.utils.text import slugify
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 
 """ Stori """
@@ -27,3 +30,8 @@ class Stori(models.Model):
          
     class Meta:
         verbose_name_plural = "Mastori"
+
+@receiver(pre_save,sender=Stori) #auto populates slug from title
+def auto_slug(sender,instance, **kwargs):
+    instance.slug = slugify(instance.title)
+pre_save.connect(auto_slug,sender=Stori)
