@@ -22,6 +22,7 @@ class User(AbstractUser):
     # add phone number as a requirement while signing up
     REQUIRED_FIELDS = ['first_name', 'last_name', 'username', 'phone_number']
 
+
     def __str__(self) -> str:
         return f'{self.first_name} {self.last_name}'
 
@@ -31,6 +32,7 @@ class User(AbstractUser):
          """
         super().__init__(*args, **kwargs)
         self.region = region
+
 
 
 class Account(models.Model):
@@ -45,4 +47,5 @@ class Account(models.Model):
 
     def __str__(self) -> str:
         return self.account_name
+
 

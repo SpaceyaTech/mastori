@@ -1,26 +1,36 @@
-name: Django CI
+name: CI Postgress Test
 
 on:
   push:
     branches: 
-
-    - main
-    - blog-lab4
+    - '**'
 
   pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:10.8
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: SYT_CMS
+        ports:
+          - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.9]
-       
+        python-version:
+        - 3.9
 
     steps:
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Update Sources
         run: sudo apt-get update
@@ -43,4 +53,3 @@ jobs:
           POSTGRES_PORT: 5432
         run: |
           python manage.py test
-            

@@ -1,5 +1,8 @@
 from django.test import TestCase
+from  accounts.models import User, Account
+from django.contrib.auth import get_user
 from  ..models import User, Account
+
 
 # Create your tests here.
 
@@ -9,7 +12,7 @@ class UserTestCase(TestCase):
         user.set_password('password12!')
         user.save()
         
-        self.assertEqual(str(user),'Team Rio')
+        self.assertEqual(str(user.first_name+' '+user.last_name),'Team Rio')
 
 
 class AccountTestCase(TestCase):
@@ -19,4 +22,5 @@ class AccountTestCase(TestCase):
         account = Account.objects.create (user=user, account_name = 'space')
         account.save()
         
-        self.assertEqual(str(account),"space")
+        self.assertEqual(str(account.name),"space")
+

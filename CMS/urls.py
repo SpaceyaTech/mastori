@@ -41,7 +41,3 @@ urlpatterns = [
     path("", include("accounts.urls"))
 ] + static(settings.MEDIA_URL,
            document_root=settings.MEDIA_ROOT)
-
-admin.site.site_header = "SpaceYaTech CMS Admin"
-admin.site.site_title = "SpaceYaTech Admin Portal"
-admin.site.index_title = "Welcome to SpaceYaTech CMS"
