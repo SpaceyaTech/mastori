@@ -12,12 +12,18 @@ class AccountDetailSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
-    number_of_accounts = serializers.IntegerField(read_only=True) #Added field to display the number of accounts that a user has.
+    #number_of_accounts = serializers.IntegerField(read_only=True) #Added field to display the number of accounts that a user has.
+    number_of_accounts = serializers.SerializerMethodField()
     account = AccountDetailSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
         fields = ['id', 'first_name', 'last_name', 'username', 'email', 'phone_number', 'password', 'number_of_accounts', 'account']
+
+    def get_number_of_accounts(self, obj):
+        """A method that takes an user object and return the number of accounts that is associated to it """
+        return obj.account.count()
+
 
 """Serializer to display the User Details to be used on account registration"""
 class UserDetailsSerializer(serializers.ModelSerializer):
