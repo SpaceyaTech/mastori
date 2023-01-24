@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Stori
+from blog.models import Stori,Category
 
 # Register your models here.
 class StoriAdmin(admin.ModelAdmin):
@@ -9,3 +9,4 @@ class StoriAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
 admin.site.register(Stori, StoriAdmin)
+admin.site.register(Category)
