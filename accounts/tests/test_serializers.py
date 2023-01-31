@@ -1,6 +1,6 @@
 from django.test import TestCase
 from accounts.models import Account, User
-from accounts.serializers import AccountDetailSerializer, UserSerializer, UserDetailsSerializer, AddAccountSerializer
+from accounts.serializers import AccountDetailSerializer, UserSerializer, UserDetailsSerializer, AddAccountSerializer, UserAccountRegistrationSerializer
 
 
 class TestAccountDetailSerializer(TestCase):
@@ -119,3 +119,37 @@ class AddAccountSerializerTest(TestCase):
         self.assertEqual(account.user, self.user)
         self.assertEqual(account.account_name, 'default')
         self.assertEqual(account.bio, 'default statement.')
+
+#from django.contrib.auth.models import User
+from django.test import TestCase
+from rest_framework import status
+from rest_framework.test import APITestCase
+
+from accounts.models import Account
+from accounts.serializers import UserAccountRegistrationSerializer
+from rest_framework import serializers
+
+class UserAccountRegistrationSerializerTestCase(APITestCase):
+    def setUp(self):
+        self.valid_payload = {
+            'user': {
+                'username': 'TeamRio',
+                'first_name': 'Team',
+                'last_name': 'Rio',
+                'email': 'teamrio@space.com',
+                'phone_number': "+254729111812",
+                'password': 'password123'
+            },
+            'confirm_password': 'password123',
+            'account_name': 'testaccount',
+            'bio': 'test bio'
+        }
+
+    def test_create_valid_user_account(self):
+        serializer = UserAccountRegistrationSerializer(data=self.valid_payload)
+        self.assertTrue(serializer.is_valid(), msg=serializer.errors)
+        user_account = serializer.save()
+        self.assertIsInstance(user_account, Account)
+        self.assertEqual(User.objects.count(), 1)
+        self.assertEqual(Account.objects.count(), 1)
+
