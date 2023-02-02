@@ -1,5 +1,9 @@
 from django.db import models
 from accounts.models import Account
+from ckeditor_uploader.fields import RichTextUploadingField
+from django.utils.text import slugify
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 """ Stori """
 """ stori_status """
@@ -12,7 +16,7 @@ class Stori(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.CharField(max_length=500, null=True, blank=True)
-    content = models.TextField()
+    content = RichTextUploadingField()
     created_by = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -25,3 +29,7 @@ class Stori(models.Model):
          
     class Meta:
         verbose_name_plural = "Mastori"
+@receiver(pre_save,sender=Stori) #auto populates slug from title
+def auto_slug(sender,instance, **kwargs):
+    instance.slug = slugify(instance.title)
+pre_save.connect(auto_slug,sender=Stori)
