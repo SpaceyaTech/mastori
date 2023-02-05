@@ -4,8 +4,16 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+from django.urls import reverse
 
-
+class Category(models.Model):
+    name = models.CharField(max_length = 50)
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name_plural = "Categories"
+        
+    
 """ Stori """
 """ stori_status """
 STATUS = (
@@ -22,7 +30,7 @@ class Stori(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0) #"""This here serves to indicate whether a stori has been published or not."""
-    #category 
+    category = models.ForeignKey(Category,on_delete=models.PROTECT)
     
 
     def __str__(self):
