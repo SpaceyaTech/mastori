@@ -1,12 +1,14 @@
 from django.db.models import Count
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from rest_framework.throttling import UserRateThrottle 
-from .throttles import AccountsRateThrottle
+from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
+from rest_framework.throttling import UserRateThrottle
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.response import Response
 
+from accounts.tokens import auth_token
+from .throttles import AccountsRateThrottle
 from accounts.models import *
 from .serializers import *
 from .models import *
@@ -16,6 +18,7 @@ from .models import *
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     throttle_classes = [UserRateThrottle, AccountsRateThrottle]
+
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
@@ -40,7 +43,7 @@ class UserViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
     serializer_class = UserSerializer
     permission_classes = [IsAdminUser]
     throttle_classes = [UserRateThrottle, AccountsRateThrottle]
-    
+
     def get_queryset(self):
         if self.request.method == 'GET':
             # Adds a new column that counts the number of accounts.
@@ -70,3 +73,18 @@ class AddUserAccountViewSet(ModelViewSet):
 
     def get_queryset(self):
         return Account.objects.filter(user_id=self.kwargs['user_pk'])
+
+# User Login endpoint
+
+
+class UserLoginViewSet(ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserLoginSerializer
+    permission_classes = [AllowAny]
+
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data
+        token = auth_token(user)
+        return Response({"token": token})

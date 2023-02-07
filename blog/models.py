@@ -1,5 +1,6 @@
+from django.conf import settings
 from django.db import models
-from accounts.models import Account
+from accounts.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
@@ -9,29 +10,35 @@ from django.dispatch import receiver
 """ Stori """
 """ stori_status """
 STATUS = (
-    (0,"Draft"),
-    (1,"Published")
+    (0, "Draft"),
+    (1, "Published")
 )
 """stori is swahili for story. was thinking of using the slang version 'risto'/'riba' in there.. """
+
+
 class Stori(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.CharField(max_length=500, null=True, blank=True)
     content = RichTextUploadingField()
-    created_by = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(choices=STATUS, default=0) #"""This here serves to indicate whether a stori has been published or not."""
-    #category 
-    
+    status = models.IntegerField(
+        choices=STATUS, default=0)  # """This here serves to indicate whether a stori has been published or not."""
+    # category
 
     def __str__(self):
-         return f'{self.title} created by: {self.created_by}'
-         
+        return f'{self.title} created by: {self.created_by}'
+
     class Meta:
         verbose_name_plural = "Mastori"
 
-@receiver(pre_save,sender=Stori) #auto populates slug from title
-def auto_slug(sender,instance, **kwargs):
+
+@receiver(pre_save, sender=Stori)  # auto populates slug from title
+def auto_slug(sender, instance, **kwargs):
     instance.slug = slugify(instance.title)
-pre_save.connect(auto_slug,sender=Stori)
+
+
+pre_save.connect(auto_slug, sender=Stori)

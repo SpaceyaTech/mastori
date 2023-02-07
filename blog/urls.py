@@ -1,8 +1,12 @@
 from django.urls import include, path
+from rest_framework.routers import DefaultRouter
+
 from blog import views
 
+router = DefaultRouter()
+router.register("blog", views.StoriViewSet, basename="blog")
 
 urlpatterns = [
-    path('',views.StoriList.as_view()),
- 
+    path('', include(router.urls)),
+
 ]

@@ -44,12 +44,12 @@ INSTALLED_APPS = [
     'accounts',
     'blog',
     'phonenumber_field',
-    #Adding the django filters module
-    'django_filters', 
+    # Adding the django filters module
+    'django_filters',
     # for blacklisting used refresh token
     'rest_framework_simplejwt.token_blacklist',
-    
-    #Adding a richtext editor
+
+    # Adding a richtext editor
     'ckeditor',
     'ckeditor_uploader'
 
@@ -166,7 +166,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=90),
     # enables users to remain logged in after given days expire as long as the user stays in the system.
     'ROTATE_REFRESH_TOKENS': True,
@@ -202,8 +202,8 @@ SIMPLE_JWT = {
 CKEDITOR_UPLOAD_PATH = '/uploads'
 
 CKEDITOR_CONFIGS = {
-    'default' : {
-           'extraPlugins': ','.join([
+    'default': {
+        'extraPlugins': ','.join([
             'uploadimage',
             'codesnippet',
             'autolink',
@@ -217,8 +217,8 @@ CKEDITOR_CONFIGS = {
             'dialogui',
             'elementspath'
         ]),
-        'toolbar' : 'full',
+        'toolbar': 'full',
         'height': '700',
-    }, 
-    
+    },
+
 }
