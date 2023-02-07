@@ -14,8 +14,7 @@ REQUIRED_FIELDS - the required fields to create a superuser
 
 class User(AbstractUser):
     email = models.EmailField(unique=True, max_length=50)
-    phone_number = PhoneNumberField(
-        blank=True, help_text='Contact phone number', null=True)
+    phone_number = PhoneNumberField(blank=True, help_text='Contact phone number', null=True , unique= True)
     verification_code = models.CharField(max_length=100, blank=True)
 
     USERNAME_FIELD = 'email'
@@ -39,10 +38,10 @@ class Account(models.Model):
     account_name = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    display_picture = models.ImageField(
-        default='blank-profile-picture.png', upload_to='profile_images')
+    display_picture = models.ImageField(default='blank-profile-picture.png', upload_to='profile_images')
     bio = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.account_name
+
 
