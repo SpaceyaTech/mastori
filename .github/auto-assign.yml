@@ -10,12 +10,11 @@ reviewers:
   
 # A number of reviewers added to the PR
 # Set 0 to add all the reviewers (default: 0)
-numberOfReviewers: 1
+numberOfReviewers: 0
 
 # A list of assignees, overrides reviewers if set
-assignees:
-  - JimmyTron
-  
+assignees: 
+    
 # A number of assignees to add to the PRs
 # Set to 0 to add all of the assignees.
 # Uses numberOfReviewers if unset.
