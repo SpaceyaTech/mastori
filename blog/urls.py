@@ -3,6 +3,6 @@ from blog import views
 
 
 urlpatterns = [
-    path('',views.StoriList.as_view()),
+    path('',views.StoriList.as_view(),name="get-all-stories"),
  
 ]

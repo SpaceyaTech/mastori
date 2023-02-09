@@ -8,7 +8,6 @@ class UserTestCase(TestCase):
         user  = User.objects.create(username='TeamRio',email = 'teamrio@space.com',first_name = 'Team',last_name = 'Rio')
         user.set_password('password12!')
         user.save()
-        
         self.assertEqual(str(user),'Team Rio')
 
 
