@@ -6,14 +6,14 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.urls import reverse
 
+# Category
 class Category(models.Model):
     name = models.CharField(max_length = 50)
     def __str__(self):
         return self.name
     class Meta:
         verbose_name_plural = "Categories"
-        
-    
+
 """ Stori """
 """ stori_status """
 STATUS = (
@@ -38,7 +38,6 @@ class Stori(models.Model):
          
     class Meta:
         verbose_name_plural = "Mastori"
-
 @receiver(pre_save,sender=Stori) #auto populates slug from title
 def auto_slug(sender,instance, **kwargs):
     instance.slug = slugify(instance.title)

@@ -51,11 +51,9 @@ INSTALLED_APPS = [
     'django_filters', 
     # for blacklisting used refresh token
     'rest_framework_simplejwt.token_blacklist',
-    
     #Adding a richtext editor
     'ckeditor',
     'ckeditor_uploader'
-
 ]
 
 MIDDLEWARE = [
