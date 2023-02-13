@@ -6,3 +6,4 @@ class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stori
         fields = '__all__'
+        

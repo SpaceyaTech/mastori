@@ -13,6 +13,7 @@ from datetime import timedelta
 from pathlib import Path
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -48,11 +49,9 @@ INSTALLED_APPS = [
     'django_filters', 
     # for blacklisting used refresh token
     'rest_framework_simplejwt.token_blacklist',
-    
     #Adding a richtext editor
     'ckeditor',
     'ckeditor_uploader'
-
 ]
 
 MIDDLEWARE = [
