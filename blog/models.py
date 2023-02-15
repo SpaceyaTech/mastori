@@ -40,7 +40,23 @@ class Stori(models.Model):
          
     class Meta:
         verbose_name_plural = "Mastori"
-@receiver(pre_save,sender=Stori) #auto populates slug from title
+        
+@receiver(pre_save,sender=Stori) #auto populates slug from title for the Stori model
 def auto_slug(sender,instance, **kwargs):
     instance.slug = slugify(instance.title)
 pre_save.connect(auto_slug,sender=Stori)
+
+
+class Comment(models.Model):
+    body = models.TextField()
+    Post_id = models.ForeignKey(Stori,on_delete= models.CASCADE)
+    user = models.ForeignKey(Account, on_delete= models.CASCADE)
+    date_created = models.DateTimeField(auto_now_add=True)
+    reactions = models.PositiveIntegerField(default=0)
+    class Meta:
+        ordering = ['-date_created']
+    
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body,self.user.name)
+
+

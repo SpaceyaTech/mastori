@@ -3,6 +3,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
 
+import random
+import time
+import string
 """
 Substituting a custom User by extending the AbstractUser
 Making Users email unique
@@ -11,14 +14,19 @@ USERNAME_FIELD - changing login to use email rather than username.
 REQUIRED_FIELDS - the required fields to create a superuser
 """
 
+# Generate six digit random code
+def generate_verification_code(size=6): 
+    return ''.join(str(random.randint(0,9)) for i in range(size))
+    
 
 class User(AbstractUser):
     email = models.EmailField(unique=True, max_length=50)
-    phone_number = PhoneNumberField(
-        blank=True, help_text='Contact phone number', null=True)
-    verification_code = models.CharField(max_length=100, blank=True)
-
+    phone_number = PhoneNumberField(blank=True, help_text='Contact phone number', null=True , unique= True)
+    verification_code = models.CharField(max_length=6, unique=True,default=generate_verification_code())
+    code_generated_at = models.DateTimeField(auto_now_add=True)
+    is_verified = models.BooleanField(default=False) # to be set up later in views to change if user verified
     USERNAME_FIELD = 'email'
+    
     # add phone number as a requirement while signing up
     REQUIRED_FIELDS = ['first_name', 'last_name', 'username', 'phone_number']
 
@@ -31,18 +39,28 @@ class User(AbstractUser):
          """
         super().__init__(*args, **kwargs)
         self.region = region
-
+    
+    
+    # resets the verification code after every 1hr
+    def get_verification_code(self):
+        now = time.time()
+        elapsed = now - self.code_generated_at.timestamp()
+        if elapsed > 3600: 
+            self.verification_code = generate_verification_code()
+            self.code_generated_at = now
+            self.save
+        return self.verification_code
 
 class Account(models.Model):
     # Referencing the customized user
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='account')#Referencing the customized user
-    account_name = models.CharField(max_length=50)
+    account_name = models.CharField(max_length=50, unique= True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    display_picture = models.ImageField(
-        default='blank-profile-picture.png', upload_to='profile_images')
+    display_picture = models.ImageField(default='blank-profile-picture.png', upload_to='profile_images')
     bio = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.account_name
+
 
