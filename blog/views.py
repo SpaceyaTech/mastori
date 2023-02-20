@@ -8,9 +8,10 @@ from blog.serializers import BlogSerializer
 from blog.filters import StoriFilter
 from blog.models import Stori
 from .throttles import BlogRateThrottle
-from accounts.permissions import IsOwner
-# Create your views here.
 
+from accounts.permissions import IsOwner
+
+# Create your views here.
 
 class StoriViewSet(viewsets.ModelViewSet):
     queryset = Stori.objects.all()
