@@ -5,6 +5,7 @@ from django.utils.text import slugify
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.urls import reverse
+from django.utils import timezone
 
 # Category
 class Category(models.Model):
@@ -24,6 +25,11 @@ STATUS = (
 )
 """stori is swahili for story. was thinking of using the slang version 'risto'/'riba' in there.. """
 class Stori(models.Model):
+    STATUS_CHOICES = (
+        ('draft', 'draft'),
+        ('published', 'published'),
+    )
+
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.CharField(max_length=500, null=True, blank=True)
@@ -33,7 +39,13 @@ class Stori(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0) #"""This here serves to indicate whether a stori has been published or not."""
     category = models.ForeignKey(Category,on_delete=models.PROTECT)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
+    published_date = models.DateTimeField(blank=True, null=True)
     
+    def publish(self):
+        if self.status == 'published':
+            self.published_date = timezone.now()
+        self.save()
 
     def __str__(self):
          return f'{self.title} created by: {self.created_by}'
