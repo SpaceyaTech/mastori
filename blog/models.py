@@ -5,13 +5,18 @@ from django.utils.text import slugify
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.urls import reverse
-from django.utils import timezone
+
+class AbstractBaseModel(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
 
 # Category
-class Category(models.Model):
+class Category(AbstractBaseModel):
     name = models.CharField(max_length = 50)
-    created_at = models.DateTimeField(auto_now_add=True) 
-    updated_at = models.DateTimeField(auto_now=True)
+    
     def __str__(self):
         return self.name
     class Meta:
@@ -24,28 +29,15 @@ STATUS = (
     (1,"Published")
 )
 """stori is swahili for story. was thinking of using the slang version 'risto'/'riba' in there.. """
-class Stori(models.Model):
-    STATUS_CHOICES = (
-        ('draft', 'draft'),
-        ('published', 'published'),
-    )
-
+class Stori(AbstractBaseModel):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.CharField(max_length=500, null=True, blank=True)
     content = RichTextUploadingField()
     created_by = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0) #"""This here serves to indicate whether a stori has been published or not."""
     category = models.ForeignKey(Category,on_delete=models.PROTECT)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
-    published_date = models.DateTimeField(blank=True, null=True)
     
-    def publish(self):
-        if self.status == 'published':
-            self.published_date = timezone.now()
-        self.save()
 
     def __str__(self):
          return f'{self.title} created by: {self.created_by}'
@@ -71,4 +63,16 @@ class Comment(models.Model):
     def __str__(self):
         return 'Comment {} by {}'.format(self.body,self.user.name)
 
+REACTION_TYPE_CHOICES = (
+    ('Like', 'Like'),
+    ('Dislike', 'Dislike')
+)
 
+class Reaction(AbstractBaseModel):
+    reaction_type = models.CharField(max_length=100, choices=REACTION_TYPE_CHOICES)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    post = models.ForeignKey(Stori, on_delete=models.CASCADE)
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.reaction_type
