@@ -4,5 +4,5 @@ from blog import views
 
 urlpatterns = [
     path('',views.StoriList.as_view()),
- 
+    path('stori/<int:pk>/publish/', views.StoriPublish.as_view()),
 ]
