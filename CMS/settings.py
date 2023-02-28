@@ -13,6 +13,7 @@ from datetime import timedelta
 from pathlib import Path
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -48,6 +49,9 @@ INSTALLED_APPS = [
     'django_filters', 
     # for blacklisting used refresh token
     'rest_framework_simplejwt.token_blacklist',
+    #Adding a richtext editor
+    'ckeditor',
+    'ckeditor_uploader'
 
 ]
 
@@ -130,12 +134,15 @@ PHONENUMBER_DEFAULT_REGION = 'KE'
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media'
 
                           # Default primary key field type
                           # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
                           )
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -145,6 +152,17 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.UserRateThrottle',
+        'blog.throttles.BlogRateThrottle',
+        'accounts.throttles.AccountsRateThrottle'
+
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'user': '200/day',
+        'blog': '100/day',
+        'accounts': '50/day'
+    }
 }
 
 SIMPLE_JWT = {
@@ -177,4 +195,30 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+
+# CKEDITOR configurations
+
+CKEDITOR_UPLOAD_PATH = '/uploads'
+
+CKEDITOR_CONFIGS = {
+    'default' : {
+           'extraPlugins': ','.join([
+            'uploadimage',
+            'codesnippet',
+            'autolink',
+            'autoembed',
+            'embedsemantic',
+            'scayt',
+            'widget',
+            'lineutils',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath'
+        ]),
+        'toolbar' : 'full',
+        'height': '700',
+    }, 
+    
 }
