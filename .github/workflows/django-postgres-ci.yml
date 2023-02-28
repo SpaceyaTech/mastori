@@ -43,7 +43,7 @@ jobs:
           pip install -r requirements.txt
       - name: Run Tests
         env:
-          DEBUG: "0"
+          DEBUG: False
           DJANGO_SECRET_KEY: CI_CD_TEST_KEY
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
