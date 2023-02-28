@@ -221,3 +221,6 @@ CKEDITOR_CONFIGS = {
     }, 
     
 }
+
+# minimum user's password length during registration
+USER_PASSWORD_LENGTH = 8

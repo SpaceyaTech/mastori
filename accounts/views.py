@@ -11,11 +11,14 @@ from accounts.models import *
 from .serializers import *
 from .models import *
 
-""" Api view for customizing token claims, this is useful when it comes to logging in user in the frontend """
-
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    """ 
+    Api view for customizing token claims, this is useful when it comes to logging in user in the frontend
+    """
+
     throttle_classes = [UserRateThrottle, AccountsRateThrottle]
+    
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
@@ -33,10 +36,9 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
-"""Api View for listing all users and retrieving specific users using their id's"""
-
-
 class UserViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
+    """Api View for listing all users and retrieving specific users using their id's"""
+
     serializer_class = UserSerializer
     permission_classes = [IsAdminUser]
     throttle_classes = [UserRateThrottle, AccountsRateThrottle]
@@ -48,19 +50,17 @@ class UserViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
         return User.objects.all()
 
 
-"""Api view to be used when a user first registers to the system"""
-
-
 class RegisterAccountViewSet(CreateModelMixin, GenericViewSet):
+    """Api view to be used when a user first registers to the system"""
+
     queryset = Account.objects.all()
     serializer_class = UserAccountRegistrationSerializer
     throttle_classes = [UserRateThrottle, AccountsRateThrottle]
 
 
-"""Api view for a user to add another new account"""
-
-
 class AddUserAccountViewSet(ModelViewSet):
+    """Api view for a user to add another new account"""
+
     serializer_class = AddAccountSerializer
     permission_classes = [IsAuthenticated]
     throttle_classes = [UserRateThrottle, AccountsRateThrottle]
