@@ -22,9 +22,9 @@ jobs:
       postgres_main:
         image: postgres:12
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: djtesting
+          DATABASE_USER: postgres
+          DATABASE_PASSWORD: postgres
+          DATABASE_DB: djtesting
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -45,9 +45,9 @@ jobs:
         env:
           DEBUG: False
           DJANGO_SECRET_KEY: CI_CD_TEST_KEY
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: djtesting
+          DATABASE_USER: postgres
+          DATABASE_PASSWORD: postgres
+          DATABASE_DB: djtesting
           POSTGRES_PORT: 5432
         run: |
           python manage.py test
