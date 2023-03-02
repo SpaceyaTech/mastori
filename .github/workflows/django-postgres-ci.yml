@@ -45,9 +45,11 @@ jobs:
         env:
           DEBUG: False
           DJANGO_SECRET_KEY: CI_CD_TEST_KEY
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: djtesting
-          POSTGRES_PORT: 5432
+          DATABASE_USER: postgres
+          DATABASE_PASSWORD: postgres
+          DATABASE_DB: djtesting
+          DATABASE_PORT: 5432
+          DATABASE_HOST: localhost
         run: |
+          python manage.py migrate
           python manage.py test
