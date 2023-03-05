@@ -48,7 +48,7 @@ class User(AbstractUser):
         if elapsed > 3600: 
             self.verification_code = generate_verification_code()
             self.code_generated_at = now
-            self.save()
+            self.save
         return self.verification_code
 
 class Account(models.Model):
