@@ -37,6 +37,7 @@ class Stori(AbstractBaseModel):
     created_by = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
     status = models.IntegerField(choices=STATUS, default=0) #"""This here serves to indicate whether a stori has been published or not."""
     category = models.ForeignKey(Category,on_delete=models.PROTECT)
+    viewers = models.ManyToManyField(Account, related_name = "viewed_posts", editable=False) #To keep track of which account have view which stori
     
 
     def __str__(self):

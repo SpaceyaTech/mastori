@@ -1,13 +1,18 @@
-from django.shortcuts import render
-from rest_framework import generics
-from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView
-from django_filters.rest_framework import DjangoFilterBackend
-from blog.serializers import BlogSerializer
-from blog.filters import StoriFilter
-from blog.models import Stori
-from rest_framework.throttling import UserRateThrottle
-from .throttles import BlogRateThrottle
+from rest_framework import generics, status
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView
+from rest_framework.throttling import UserRateThrottle
+
+from django_filters.rest_framework import DjangoFilterBackend
+
+from blog.models import Stori
+from blog.serializers import BlogSerializer, StoriViewersSerializer
+from blog.filters import StoriFilter
+from blog.throttles import BlogRateThrottle
+
+
+
 
 
 
@@ -45,4 +50,14 @@ class StoriPublish(UpdateAPIView):
         instance.publish()
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
-    
+
+
+class StoriViewersCountView(APIView):
+    """Count the numbers of account that views a stori"""
+    def get(self, request, slug, format=None):
+        try:
+            stori = Stori.objects.get(slug=slug)
+        except Stori.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        serializer = StoriViewersSerializer(stori)
+        return Response(serializer.data)
