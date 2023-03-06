@@ -51,12 +51,16 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     #Adding a richtext editor
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader', 
+
+    # cors
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -221,6 +225,10 @@ CKEDITOR_CONFIGS = {
     }, 
     
 }
+
+# cors configurations
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 # minimum user's password length during registration
 USER_PASSWORD_LENGTH = 8
