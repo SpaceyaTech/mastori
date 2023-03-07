@@ -36,3 +36,4 @@ def test_stori_viewers_not_count():
     response = client.get(url)
     assert response.status_code == status.HTTP_200_OK
     assert response.data == stori_serializer.data
+
