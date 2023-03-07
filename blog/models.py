@@ -57,11 +57,22 @@ class Comment(models.Model):
     user = models.ForeignKey(Account, on_delete= models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     reactions = models.PositiveIntegerField(default=0)
+    #make the initial comment parent
+    parent_comment = models.ForeignKey('self',on_delete=models.CASCADE,blank=True,null=True,related_name='replies')
     class Meta:
         ordering = ['-date_created']
     
     def __str__(self):
-        return 'Comment {} by {}'.format(self.body,self.user.name)
+        return 'Comment {} by {}'.format(self.body,self.user.account_name) 
+    
+    def child_comment(self):#get all child comments
+        return Comment.objects.filter(parent_comment=self)
+    
+    @property #make comment a parent if it gets a reply 
+    def is_parent(self):
+        if self.parent_comment is not None:
+            return False
+        return True
 
 REACTION_TYPE_CHOICES = (
     ('Like', 'Like'),
