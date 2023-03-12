@@ -162,8 +162,5 @@ Mastori is licensed under the MIT License. See LICENSE for more information.
 [Api Throttling by:](https://github.com/SpaceyaTech/Team-Rio-Django/wiki/API-THROTTLING)[Collins](@Collins-Omariba)
 ## Nested Comments 
 [Nested Comments by:](https://github.com/SpaceyaTech/Team-Rio-Django/wiki/Nested-Comments) [Fredrick](@aibunny)
-
-
 # Contributors 
 [![Contributors](https://contrib.rocks/image?repo=SpaceyaTech/blog)](https://github.com/SpaceyaTech/blog/graphs/contributors)
-
