@@ -2,7 +2,7 @@
 ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
 ![postgresql](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 
-[![Django CI](https://github.com/SpaceyaTech/Team-Rio-Django/actions/workflows/django.yml/badge.svg?event=push)](https://github.com/SpaceyaTech/Team-Rio-Django/actions/workflows/django.yml)
+[![CI Django & Postgres Tests](https://github.com/SpaceyaTech/blog/actions/workflows/django-postgres-ci.yml/badge.svg)](https://github.com/SpaceyaTech/blog/actions/workflows/django-postgres-ci.yml)
 
 # Mastori: A SpaceYaTech Blog App made in Django
 Mastori is a community-driven open-source project that aims to provide a simple and efficient blogging platform built with the Django Rest Framework. 
