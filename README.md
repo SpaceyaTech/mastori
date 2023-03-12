@@ -2,7 +2,6 @@
 ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
 ![postgresql](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 
-
 [![CI Django & Postgres Tests](https://github.com/SpaceyaTech/blog/actions/workflows/django-postgres-ci.yml/badge.svg)](https://github.com/SpaceyaTech/blog/actions/workflows/django-postgres-ci.yml)
 
 [![Jambo](https://github.com/SpaceyaTech/mastori/actions/workflows/jambo.yaml/badge.svg)](https://github.com/SpaceyaTech/mastori/actions/workflows/jambo.yaml)
