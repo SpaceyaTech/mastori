@@ -12,7 +12,15 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import os
+import environ
 
+
+# load environment variables
+env_path = os.path.abspath(os.path.dirname("env"))
+env = environ.Env()
+environ.Env.read_env(
+    os.path.join(env_path, ".env")
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -95,11 +103,11 @@ WSGI_APPLICATION = 'CMS.wsgi.application'
 DATABASES = {
     'default': {
        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.environ.get("DATABASE_DB"),
-        "USER": os.environ.get("DATABASE_USER"),
-        "PASSWORD": os.environ.get("DATABASE_PASSWORD"),
-        "HOST": os.environ.get("DATABASE_HOST"),
-        "PORT": os.environ.get("DATABASE_PORT"),
+        "NAME": env("DATABASE_DB"),
+        "USER": env("DATABASE_USER"),
+        "PASSWORD": env("DATABASE_PASSWORD"),
+        "HOST": env("DATABASE_HOST"),
+        "PORT": env("DATABASE_PORT"),
     }
 }
 
@@ -236,3 +244,5 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 # minimum user's password length during registration
 USER_PASSWORD_LENGTH = 8
+
+
