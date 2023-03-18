@@ -230,9 +230,9 @@ CKEDITOR_CONFIGS = {
     
 }
 
+
 # cors configurations
 CORS_ALLOW_ALL_ORIGINS = True
-
 
 # minimum user's password length during registration
 USER_PASSWORD_LENGTH = 8
