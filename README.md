@@ -13,9 +13,48 @@ The SpaceYaTech Content Management system is an open-application that lets users
 For a more detailed overview of the project, read through the [CMS Backend wiki](https://github.com/SpaceyaTech/CMS-Backend-Repository/wiki) 
 
 The project is designed to help developers build their own blogging website or add blogging functionality to an the SpaceYaTech website with ease.
-# Endpoints 
-> 
 
+# Endpoints 
+```sql
+/mastori/
+ ```
+ The `/mastori/` endpoint allows retrieving all blog posts. GET requests to this endpoint retrieve a list of all blog posts 
+> For complete documentation. [Mastori Api Documentation](https://github.com/SpaceyaTech/mastori-backend/wiki/Endpoints)
+## Authentication
+```sql
+/mastori/token/
+```
+## Users
+```sql
+    /register/
+    /login/
+```
+## User Accounts
+```sql
+    /accounts/
+    /accounts/id/
+```
+## Blog Posts
+```sql 
+    /mastori/
+    /stori/id/
+    /account/id/stori/
+    /account/id/stori/id/
+```
+## Comments
+```sql
+    /stori/id/comments/
+    /stori/id/comment/id
+    /account/id/stori/id/comment/
+    /account/id/stori/id/comment/id/
+```
+## Reactions
+```sql
+    /stori/id/reactions/
+    /stori/id/reaction/id
+    /account/id/stori/id/reaction/
+    /account/id/stori/id/reaction/id/
+```
 # Features
 Mastori provides the following features:
 
