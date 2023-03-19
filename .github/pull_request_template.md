@@ -15,16 +15,17 @@ Please delete options that are not relevant.
 
 ## How Has This Been Tested?
 
-Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration
+[![CI Django & Postgres Tests](https://github.com/SpaceyaTech/blog/actions/workflows/django-postgres-ci.yml/badge.svg)](https://github.com/SpaceyaTech/blog/actions/workflows/django-postgres-ci.yml)
 
-- [ ] Test A
-- [ ] Test B
+[![Jambo](https://github.com/SpaceyaTech/mastori/actions/workflows/jambo.yaml/badge.svg)](https://github.com/SpaceyaTech/mastori/actions/workflows/jambo.yaml)
+
 
 **Test Configuration**:
-* Firmware version:
-* Hardware:
-* Toolchain:
-* SDK:
+
+```sql
+          python manage.py migrate
+          python manage.py test
+```
 
 ## Checklist:
 
