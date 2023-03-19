@@ -6,6 +6,7 @@
 
 [![Jambo](https://github.com/SpaceyaTech/mastori/actions/workflows/jambo.yaml/badge.svg)](https://github.com/SpaceyaTech/mastori/actions/workflows/jambo.yaml)
 
+
 [![Docker Image CI](https://github.com/JimmyTron/mastori-backend/actions/workflows/docker-image.yml/badge.svg)](https://github.com/JimmyTron/mastori-backend/actions/workflows/docker-image.yml)
 
 [![Jambo ](https://github.com/JimmyTron/mastori-backend/actions/workflows/jambo.yaml/badge.svg)](https://github.com/JimmyTron/mastori-backend/actions/workflows/jambo.yaml)
@@ -19,7 +20,6 @@ The SpaceYaTech Content Management system is an open-application that lets users
 For a more detailed overview of the project, read through the [CMS Backend wiki](https://github.com/SpaceyaTech/CMS-Backend-Repository/wiki) 
 
 The project is designed to help developers build their own blogging website or add blogging functionality to an the SpaceYaTech website with ease.
-
 
 # Endpoints 
 ```sql
@@ -54,6 +54,7 @@ The project is designed to help developers build their own blogging website or a
     /stori/id/comment/id
     /account/id/stori/id/comment/
     /account/id/stori/id/comment/id/
+
 ```
 ## Reactions
 ```sql
@@ -61,7 +62,6 @@ The project is designed to help developers build their own blogging website or a
     /stori/id/reaction/id
     /account/id/stori/id/reaction/
     /account/id/stori/id/reaction/id/
-```
 
 # Features
 Mastori provides the following features:
@@ -107,16 +107,6 @@ Mastori provides the following features:
 Once the server is running, you can access the API at `http://localhost:8000/api/`. You can use any HTTP client to interact with the API, such as curl or httpie. Alternatively, you can use the built-in API explorer by navigating to `http://localhost:8000/api/docs/` in your web browser.
 
 To access the admin panel, navigate to `http://localhost:8000/admin/` and log in using the credentials of the superuser you created earlier.
-
-## The blog Api
-
-The blog api **{{baseurl}}/blog/**
-shows a list of all available blog posts (Stori/Mastori)
-The model naming is abitrary and can be subject to change if need be
-Ther is also need to filter out the various blogposts in relation ti their tittle or date posted hence the filter
-
-![Screenshot from 2023-01-03 00-59-16](https://user-images.githubusercontent.com/23496280/210282497-96bb8b6f-544d-4454-8b01-e3aea9b8745d.png)
-
 
 # Contributing
 We welcome contributions from the community. To contribute, follow these steps:
@@ -166,5 +156,6 @@ Mastori is licensed under the MIT License. See LICENSE for more information.
 [Api Throttling by:](https://github.com/SpaceyaTech/Team-Rio-Django/wiki/API-THROTTLING)[Collins](@Collins-Omariba)
 ## Nested Comments 
 [Nested Comments by:](https://github.com/SpaceyaTech/Team-Rio-Django/wiki/Nested-Comments) [Fredrick](@aibunny)
+
 # Contributors 
 [![Contributors](https://contrib.rocks/image?repo=SpaceyaTech/blog)](https://github.com/SpaceyaTech/blog/graphs/contributors)
