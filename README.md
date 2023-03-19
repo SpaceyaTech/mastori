@@ -5,6 +5,7 @@
 [![CI Django & Postgres Tests](https://github.com/SpaceyaTech/blog/actions/workflows/django-postgres-ci.yml/badge.svg)](https://github.com/SpaceyaTech/blog/actions/workflows/django-postgres-ci.yml)
 
 [![Jambo](https://github.com/SpaceyaTech/mastori/actions/workflows/jambo.yaml/badge.svg)](https://github.com/SpaceyaTech/mastori/actions/workflows/jambo.yaml)
+
 # Mastori: A SpaceYaTech Blog App made in Django
 Mastori is a community-driven open-source project that aims to provide a simple and efficient blogging platform built with the Django Rest Framework. 
 
@@ -14,6 +15,7 @@ The SpaceYaTech Content Management system is an open-application that lets users
 For a more detailed overview of the project, read through the [CMS Backend wiki](https://github.com/SpaceyaTech/CMS-Backend-Repository/wiki) 
 
 The project is designed to help developers build their own blogging website or add blogging functionality to an the SpaceYaTech website with ease.
+
 
 # Endpoints 
 ```sql
@@ -56,6 +58,7 @@ The project is designed to help developers build their own blogging website or a
     /account/id/stori/id/reaction/
     /account/id/stori/id/reaction/id/
 ```
+
 # Features
 Mastori provides the following features:
 
@@ -103,6 +106,7 @@ To access the admin panel, navigate to `http://localhost:8000/admin/` and log in
 
 ## The blog Api
 
+
 The blog api **{{baseurl}}/blog/**
 shows a list of all available blog posts (Stori/Mastori)
 The model naming is abitrary and can be subject to change if need be
@@ -121,6 +125,7 @@ We welcome contributions from the community. To contribute, follow these steps:
 * Create a pull request
 
 Please make sure to follow the coding style and conventions used in the project.
+
 
 Get to read the [Contributions guide](https://github.com/SpaceyaTech/Team-Rio-Django/blob/main/contributions.md) here.
 
