@@ -2,9 +2,11 @@
 ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
 ![postgresql](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 
+
 [![CI Django & Postgres Tests](https://github.com/SpaceyaTech/blog/actions/workflows/django-postgres-ci.yml/badge.svg)](https://github.com/SpaceyaTech/blog/actions/workflows/django-postgres-ci.yml)
 
 [![Jambo](https://github.com/SpaceyaTech/mastori/actions/workflows/jambo.yaml/badge.svg)](https://github.com/SpaceyaTech/mastori/actions/workflows/jambo.yaml)
+
 # Mastori: A SpaceYaTech Blog App made in Django
 Mastori is a community-driven open-source project that aims to provide a simple and efficient blogging platform built with the Django Rest Framework. 
 
@@ -14,6 +16,7 @@ The SpaceYaTech Content Management system is an open-application that lets users
 For a more detailed overview of the project, read through the [CMS Backend wiki](https://github.com/SpaceyaTech/CMS-Backend-Repository/wiki) 
 
 The project is designed to help developers build their own blogging website or add blogging functionality to an the SpaceYaTech website with ease.
+
 
 # Endpoints 
 ```sql
@@ -56,6 +59,7 @@ The project is designed to help developers build their own blogging website or a
     /account/id/stori/id/reaction/
     /account/id/stori/id/reaction/id/
 ```
+
 # Features
 Mastori provides the following features:
 
@@ -160,5 +164,7 @@ Mastori is licensed under the MIT License. See LICENSE for more information.
 ## Nested Comments 
 [Nested Comments by:](https://github.com/SpaceyaTech/Team-Rio-Django/wiki/Nested-Comments) [Fredrick](@aibunny)
 
+
 # Contributors 
 [![Contributors](https://contrib.rocks/image?repo=SpaceyaTech/blog)](https://github.com/SpaceyaTech/blog/graphs/contributors)
+
