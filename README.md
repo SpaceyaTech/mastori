@@ -4,6 +4,7 @@
 
 [![CI Django & Postgres Tests](https://github.com/SpaceyaTech/blog/actions/workflows/django-postgres-ci.yml/badge.svg)](https://github.com/SpaceyaTech/blog/actions/workflows/django-postgres-ci.yml)
 
+[![Jambo](https://github.com/SpaceyaTech/mastori/actions/workflows/jambo.yaml/badge.svg)](https://github.com/SpaceyaTech/mastori/actions/workflows/jambo.yaml)
 # Mastori: A SpaceYaTech Blog App made in Django
 Mastori is a community-driven open-source project that aims to provide a simple and efficient blogging platform built with the Django Rest Framework. 
 
