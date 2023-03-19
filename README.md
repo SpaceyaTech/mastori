@@ -8,7 +8,7 @@
 
 [![Docker Image CI](https://github.com/JimmyTron/mastori-backend/actions/workflows/docker-image.yml/badge.svg)](https://github.com/JimmyTron/mastori-backend/actions/workflows/docker-image.yml)
 
-[![Jambo 👋](https://github.com/JimmyTron/mastori-backend/actions/workflows/jambo.yaml/badge.svg)](https://github.com/JimmyTron/mastori-backend/actions/workflows/jambo.yaml)
+[![Jambo ](https://github.com/JimmyTron/mastori-backend/actions/workflows/jambo.yaml/badge.svg)](https://github.com/JimmyTron/mastori-backend/actions/workflows/jambo.yaml)
 
 # Mastori: A SpaceYaTech Blog App made in Django
 Mastori is a community-driven open-source project that aims to provide a simple and efficient blogging platform built with the Django Rest Framework. 
