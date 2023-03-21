@@ -245,4 +245,9 @@ CORS_ALLOW_ALL_ORIGINS = True
 # minimum user's password length during registration
 USER_PASSWORD_LENGTH = 8
 
+# celery configurations
+# By default celery will use Redis as the message broker
+# RabitMQ or AWS Simple Queue can be used as well
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
 
+CELERY_RESULT_BACKEND = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")

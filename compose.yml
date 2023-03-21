@@ -1,5 +1,17 @@
 version: "3.8"
 
+x-environment: &commonEnvironment
+  - DATABASE_DB=${DATABASE_DB}
+  - DATABASE_USER=${DATABASE_USER}
+  - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+  - DATABASE_HOST=database
+  - DATABASE_PORT=${DATABASE_PORT}
+  - ADMIN_USERNAME=${ADMIN_USERNAME}
+  - ADMIN_EMAIL=${ADMIN_EMAIL}
+  - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+  - CELERY_BROKER=${CELERY_BROKER}
+  - SECRET_KEY=${SECRET_KEY}
+
 services:
 
   application:
@@ -15,18 +27,25 @@ services:
 
         condition: service_healthy
 
-    environment:
-
-      - DATABASE_DB=${DATABASE_DB}
-      - DATABASE_USER=${DATABASE_USER}
-      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
-      - DATABASE_HOST=${DATABASE_HOST}
-      - DATABASE_PORT=${DATABASE_PORT}
-      - ADMIN_USERNAME=${ADMIN_USERNAME}
-      - ADMIN_EMAIL=${ADMIN_EMAIL}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    environment: *commonEnvironment
 
     command: gunicorn --bind 0.0.0.0:8000 --workers ${WORKERS} CMS.wsgi
+
+  celery:
+
+    build: .
+
+    depends_on:
+      - application
+      - redis
+    
+    command: celery app=celery_core workers --loglevel=info
+
+    environment: *commonEnvironment
+
+  redis:
+
+    image: redis:7-alpine
 
   database:
 
