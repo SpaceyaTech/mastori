@@ -7,7 +7,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CMS.settings")
 # create Celery instance with 'celery_core' as the name. this name will be used to run our celery worker.
 # eg >> cerely app=celery_core worker
 
-app = Celery("celery_core")
+app = Celery("CMS")
 
 # load celery config values from our django app 
 # settings the namespace assures that there would be no crashes with other DJANGO settings
