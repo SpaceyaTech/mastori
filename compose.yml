@@ -11,6 +11,13 @@ x-environment: &commonEnvironment
   - ADMIN_PASSWORD=${ADMIN_PASSWORD}
   - CELERY_BROKER=${CELERY_BROKER}
   - SECRET_KEY=${SECRET_KEY}
+  - EMAIL_HOST=${EMAIL_HOST}
+  - EMAIL_USE_TLS=${EMAIL_USE_TLS}
+  - EMAIL_PORT=${EMAIL_PORT}
+  - EMAIL_USE_SSL=${EMAIL_USE_SSL}
+  - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+  - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+  - EMAIL_SENDER=${EMAIL_SENDER}
 
 services:
 
@@ -39,7 +46,7 @@ services:
       - application
       - redis
     
-    command: celery app=celery_core workers --loglevel=info
+    command: celery --app=CMS worker --loglevel=info
 
     environment: *commonEnvironment
 
