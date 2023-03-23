@@ -17,6 +17,8 @@ django-filter==22.1
 django-jazzmin==2.6.0
 django-js-asset==2.0.0
 django-phonenumber-field==7.0.0
+django-render-block==0.9.2
+django-templated-email==3.0.1
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.2
 drf-nested-routers==0.93.4
