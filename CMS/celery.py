@@ -1,35 +1,31 @@
 import os
 from celery import Celery
 
-# set the default value of DJANGO_SETTINGS so that celery can find the our django app
+# Set the default value of DJANGO_SETTINGS_MODULE so that Celery can find our Django app.
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CMS.settings")
 
-# create Celery instance with 'celery_core' as the name. this name will be used to run our celery worker.
-# eg >> cerely app=celery_core worker
+# Create a Celery instance with 'CMS' as the name. This name will be used to run our Celery worker.
+# E.g. >> celery app=CMS worker
 
 app = Celery("CMS")
 
-# load celery config values from our django app 
-# settings the namespace assures that there would be no crashes with other DJANGO settings
-# with the namespace set. any celery settings should be defined with CELERY_ prefix
+# Load Celery config values from our Django app settings. The namespace assures that there would be no crashes
+# with other Django settings. With the namespace set, any Celery settings should be defined with the CELERY_ prefix.
 
 app.config_from_object("django.conf.settings", namespace="CELERY")
 
-# well we should be able to discover task within our django application
+# We should be able to discover tasks within our Django application.
 
 """
-Any callable with shared_task would be discoverd as a task
+Any callable with shared_task would be discovered as a task.
 
-example
+Example:
 
 from celery import shared_task
 
 @shared_task
 def test_task():
-
-    print('this is a task')
-
+    print('This is a task')
     return True
-
 """
 app.autodiscover_tasks()

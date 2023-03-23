@@ -1,18 +1,18 @@
 """
-This Package handles spaceyatech blog mail services.
+This package handles Spaceyatech blog mail services.
 
-The Package contains 1. email module which handles the mail logic
-                     2. templates/templated_email directory which is used to register email templates
+The package contains:
+1. An email module which handles the mail logic.
+2. A templates/templated_email directory which is used to register email templates.
 
-Registering Email templates
+Registering Email Templates:
 
-email templates are just files that are used ......
-
-as specied in the applications settings each email template file should have a .email extention
+Email templates are just files that are used to standardize the format and content of emails sent by the application. 
+As specified in the application's settings, each email template file should have a .email extension. 
 
 Django templating style can be used to write a template file. 
 
-example
+Example:
 
 {% block subject %}My subject for {{username}}{% endblock %}
 {% block plain %}
@@ -24,5 +24,4 @@ example
 
   Thanks, you rock!
 {% endblock %}
-
 """

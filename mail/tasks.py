@@ -1,24 +1,29 @@
 from templated_email import send_templated_mail
 from celery import shared_task
+from celery.signals import task_failure
 
 @shared_task
 def _async_send_email(context:dict, template:str, from_email:str, recipients:list[str]) ->None:
 
     """
-    Schedule a task to send an email
+    Schedule a task to send an email asynchronously.
 
-    :param context: a dict that contains info to be passed to the template
-    :param template: some template
-    :param recipients: a list containing recipients' email addresses
+    Args:
+        context (dict): A dictionary containing information to be passed to the email template.
+        template (str): The name of the email template file.
+        from_email (str): The email address of the sender.
+        recipients (list[str]): A list of email addresses of the recipients.
 
-    usage: _async_send_email.delay(context, template, from_email, recipients)
+    Usage:
+        _async_send_email.delay(context, template, from_email, recipients)
 
-    the above call should return a unique id for the task scheduled
+    Returns:
+        None.
 
-    the template passed should exist in the ../blog/mail/templates/tempated_email/ directory
-
-    otherwise to handle FileNotFound exceptions on the current django process use send_email
-
+    Note:
+        The "send_templated_mail" function is used to send the email using the provided information. 
+        This function is asynchronous and runs in the background, which allows the application to continue processing 
+        without waiting for the email to be sent.
     """
 
     send_templated_mail(
@@ -28,10 +33,14 @@ def _async_send_email(context:dict, template:str, from_email:str, recipients:lis
         template_name=template,
     )
 
-def _error_callback():
+def _on_mail_error_callback(sender=None, task_id=None, exeption=None, **kwargs):
+
+    # This function is a placeholder for handling errors that may occur during email sending. 
+    # It is not yet implemented, so it currently does nothing. 
+
+    # However, the plan is to eventually use a global application logging service to log any errors that occur during email sending. 
 
     pass
 
-def _success_callback():
 
-    pass
+task_failure.connect(_on_mail_error_callback, sender=_async_send_email)
