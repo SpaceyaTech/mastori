@@ -7,6 +7,7 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = "__all__"
+        read_only_fields = ("user",)
 
 class CategorySerializers(serializers.ModelSerializer)        :
     class Meta:
@@ -14,8 +15,10 @@ class CategorySerializers(serializers.ModelSerializer)        :
         fields = "__all__"
 class BlogSerializer(serializers.ModelSerializer):
     comment = serializers.HyperlinkedRelatedField(many=True,view_name="comment-detail",read_only=True)
-    # # category = serializers.CharField(source="category.name",read_only=True)
+    category = serializers.HyperlinkedRelatedField(view_name="category-detail",queryset=Category.objects.all())
+
     class Meta:
         model = Stori
-        exclude = ("slug",)
+        fields = "__all__"
+        read_only_fields = ("slug",)
         depth = 1

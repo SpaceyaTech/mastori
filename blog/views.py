@@ -5,7 +5,7 @@ from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, R
 from django_filters.rest_framework import DjangoFilterBackend
 
 from django.shortcuts import render
-
+from accounts.models import Account
 from blog.serializers import BlogSerializer, CommentSerializer, CategorySerializers
 from blog.filters import StoriFilter
 from blog.models import Stori,Comment,Category
@@ -25,7 +25,7 @@ from .throttles import BlogRateThrottle
     
 
 """List and create mastori using ListCreateAPIView"""
-class StoriList(generics.ListAPIView):
+class StoriList(generics.ListCreateAPIView):
     queryset = Stori.objects.all()
     serializer_class = BlogSerializer
     authentication_classes = [SessionAuthentication]
@@ -33,18 +33,16 @@ class StoriList(generics.ListAPIView):
     filter_backends = (DjangoFilterBackend,)   
     filterset_class = StoriFilter
 
+    def perform_create(self, serializer):
+        account_instance = Account.objects.get(user = self.request.user)
+        return serializer.save(created_by=account_instance)
+
 
 """Fetch, Update and Delete an individual stori"""
-class StoriDetail(generics.CreateAPIView):
+class StoriDetail(generics.RetrieveAPIView):
     queryset = Stori.objects.all()
-    serializer_class = CommentSerializer
+    serializer_class = BlogSerializer
     authentication_classes = [SessionAuthentication]
-
-    def perform_create(self, serializer):
-        print(serializer)
-        serializer.save(created_by=self.request.user)
-
-
 
 class StoriPublish(UpdateAPIView):
     queryset = Stori.objects.all()
@@ -59,17 +57,25 @@ class StoriPublish(UpdateAPIView):
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
 
-# class StoriCommentsList(ListAPIView):
-#     """Retreive Stori with comments"""
-#     # queryset = Stori.objects.get(id=1).comment.all()
-    # serializer_class = BlogSerializer
-    # authentication_classes = [SessionAuthentication]
-#     lookup_field = "pk"
 
-class StoriCommentsDetail(generics.RetrieveUpdateDestroyAPIView):
+class StoriCommentCreate(generics.ListCreateAPIView):
+    """Create, specific comment"""
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     authentication_classes = [SessionAuthentication]
+
+    def perform_create(self, serializer):
+        account_instance = Account.objects.get(user = self.request.user)
+        return serializer.save(user=account_instance)
+
+
+class StoriCommentsDetail(generics.RetrieveUpdateDestroyAPIView):
+    """ get, update, destroy comment  """
+
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    authentication_classes = [SessionAuthentication]
+    
 
 
 class CategoryCreate(generics.ListCreateAPIView):

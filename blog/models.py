@@ -32,7 +32,7 @@ class Stori(AbstractBaseModel):
     description = models.CharField(max_length=500, null=True, blank=True)
     content = RichTextUploadingField()
     created_by = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
-    status = models.IntegerField(choices=Status.choices, default=Status.Draft) #"""This here serves to indicate whether a stori has been published or not."""
+    status = models.CharField(max_length=9,choices=Status.choices, default=Status.Draft) #"""This here serves to indicate whether a stori has been published or not."""
     category = models.ForeignKey(Category,on_delete=models.PROTECT)
     
 
@@ -41,7 +41,11 @@ class Stori(AbstractBaseModel):
          
     class Meta:
         verbose_name_plural = "Mastori"
-        
+
+    def get_absolute_url(self):
+        return reverse("blog-detail",kwargs={"pk":self.id})
+
+
 @receiver(pre_save,sender=Stori) #auto populates slug from title for the Stori model
 def auto_slug(sender,instance, **kwargs):
     instance.slug = slugify(instance.title)
