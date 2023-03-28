@@ -2,6 +2,7 @@ from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 
 from django.shortcuts import render
@@ -91,3 +92,15 @@ class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializers
 
+class StoriViewset(viewsets.ModelViewSet):
+    serializer_class = BlogSerializer
+    queryset = Stori.objects.all()
+
+class CommentViewset(viewsets.ModelViewSet):
+    serializer_class = CommentSerializer
+
+    def get_serializer_context(self):
+        return {"blog_id":self.kwargs["blog_pk"]}
+    
+    def get_queryset(self):
+        return Comment.objects.filter(Post_id=self.kwargs["blog_pk"])

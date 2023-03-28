@@ -9,16 +9,22 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ("user",)
 
+    def create(self, validated_data):
+        stori = self.context["post_id"]
+        instance_stori = Stori.objects.get(id=stori)
+        instance_comment = Comment.objects.create(Post_id=instance_stori,**validated_data)
+        return instance_comment
+
 class CategorySerializers(serializers.ModelSerializer)        :
     class Meta:
         model = Category
         fields = "__all__"
 class BlogSerializer(serializers.ModelSerializer):
-    comment = serializers.HyperlinkedRelatedField(many=True,view_name="comment-detail",read_only=True)
-    category = serializers.HyperlinkedRelatedField(view_name="category-detail",queryset=Category.objects.all())
-
+    # comment = serializers.HyperlinkedRelatedField(many=True,view_name="comment-detail",read_only=True)
+    # category = serializers.HyperlinkedRelatedField(view_name="category-detail",queryset=Category.objects.all())
+    comment = CommentSerializer(many=True,read_only=True)
     class Meta:
         model = Stori
         fields = "__all__"
         read_only_fields = ("slug",)
-        depth = 1
+      
