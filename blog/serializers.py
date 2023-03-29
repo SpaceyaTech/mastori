@@ -9,11 +9,12 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ("user",)
 
-    def create(self, validated_data):
-        stori = self.context["post_id"]
-        instance_stori = Stori.objects.get(id=stori)
-        instance_comment = Comment.objects.create(Post_id=instance_stori,**validated_data)
-        return instance_comment
+    # def create(self, validated_data):
+    #     print(validated_data.items())
+    #     user = validated_data["user"]
+    #     user_account = Account.objects.get(user=user)
+    #     instance_comment = Comment.objects.create(user=user_account,**validated_data)
+    #     return instance_comment
 
 class CategorySerializers(serializers.ModelSerializer)        :
     class Meta:
@@ -26,5 +27,7 @@ class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stori
         fields = "__all__"
-        read_only_fields = ("slug",)
+        read_only_fields = ("slug","created_by")
+    
+        
       

@@ -5,14 +5,15 @@ from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, R
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from accounts.models import Account
+from rest_framework import viewsets
 from blog.serializers import BlogSerializer, CommentSerializer, CategorySerializers
 from blog.filters import StoriFilter
 from blog.models import Stori,Comment,Category
 from rest_framework.throttling import UserRateThrottle
 from .throttles import BlogRateThrottle
-
+from accounts.serializers import UserSerializer
 
 
 
@@ -104,3 +105,54 @@ class CommentViewset(viewsets.ModelViewSet):
     
     def get_queryset(self):
         return Comment.objects.filter(Post_id=self.kwargs["blog_pk"])
+
+# account/id/blog/id/comment/id/
+class AccountViewSet(viewsets.ViewSet):
+    """Serialize account"""
+    serializer_class = UserSerializer
+    authentication_classes = [SessionAuthentication]
+
+    def list(self,request):
+        queryset = Account.objects.filter()
+        serializer = UserSerializer(queryset,many=True)
+        return Response(serializer.data)
+    
+    def retrieve(self,request,pk=None):
+        queryset= Account.objects.filter()
+        account = get_object_or_404(queryset,pk=pk)
+        serializer = UserSerializer(account)
+        return Response(serializer.data)
+
+class Blogviewset(viewsets.ViewSet):
+    """"""
+    serializer_class = BlogSerializer
+    
+
+    def list(self,request,account_pk=None):
+        queryset = Stori.objects.filter(created_by=account_pk)
+        blogs = get_object_or_404(queryset,pk=pk)
+        serializer = BlogSerializer(blogs)
+        return Response(serializer.data)
+    
+    def retrieve(self,request,pk=None,account_pk=None):
+        queryset = Stori.objects.filter(created_by=account_pk,pk=pk)
+        blogs = get_object_or_404(queryset,pk=pk)
+        serializer = BlogSerializer(blogs,many=True)
+        return Response(serializer.data)
+
+class BlogCommentViewSet(viewsets.ViewSet):
+    serializer_class = CommentSerializer
+
+    def list(self, request,pk=None,blog_pk=None,account_pk=None):
+        queryset = Comment.objects.filter(Post_id=blog_pk,user=account_pk)
+        comments = get_object_or_404(queryset,pk=pk)
+        serializer = CommentSerializer(comments,many=True)
+        return Response(serializer.data)
+    
+    def retrieve(self,request,pk=None,blog_pk=None,account_pk=None):
+        queryset = Comment.objects.filter(pk=pk,Post_id=blog_pk,user=account_pk)
+        comments = get_object_or_404(queryset,pk=pk)
+        serializer = CommentSerializer(comments)
+        return Response(serializer.data)
+        
+        
