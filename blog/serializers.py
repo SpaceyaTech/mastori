@@ -4,30 +4,26 @@ from accounts.models import Account
 from blog.models import Stori, Comment, Category
 
 class CommentSerializer(serializers.ModelSerializer):
+    """comments serializer"""
     class Meta:
         model = Comment
         fields = "__all__"
-        read_only_fields = ("user",)
+        # read_only_fields = ("user",)
 
-    # def create(self, validated_data):
-    #     print(validated_data.items())
-    #     user = validated_data["user"]
-    #     user_account = Account.objects.get(user=user)
-    #     instance_comment = Comment.objects.create(user=user_account,**validated_data)
-    #     return instance_comment
 
 class CategorySerializers(serializers.ModelSerializer)        :
+    "category serializers"
     class Meta:
         model = Category
         fields = "__all__"
 class BlogSerializer(serializers.ModelSerializer):
     # comment = serializers.HyperlinkedRelatedField(many=True,view_name="comment-detail",read_only=True)
     # category = serializers.HyperlinkedRelatedField(view_name="category-detail",queryset=Category.objects.all())
-    comment = CommentSerializer(many=True,read_only=True)
+    # comment = CommentSerializer(many=True,read_only=True)
     class Meta:
         model = Stori
         fields = "__all__"
-        read_only_fields = ("slug","created_by")
+        read_only_fields = ("slug",)
     
         
       

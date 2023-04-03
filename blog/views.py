@@ -35,16 +35,6 @@ class StoriList(generics.ListCreateAPIView):
     filter_backends = (DjangoFilterBackend,)   
     filterset_class = StoriFilter
 
-    def perform_create(self, serializer):
-        account_instance = Account.objects.get(user = self.request.user)
-        return serializer.save(created_by=account_instance)
-
-
-"""Fetch, Update and Delete an individual stori"""
-class StoriDetail(generics.RetrieveAPIView):
-    queryset = Stori.objects.all()
-    serializer_class = BlogSerializer
-    authentication_classes = [SessionAuthentication]
 
 class StoriPublish(UpdateAPIView):
     queryset = Stori.objects.all()
@@ -60,24 +50,6 @@ class StoriPublish(UpdateAPIView):
         return Response(serializer.data)
 
 
-class StoriCommentCreate(generics.ListCreateAPIView):
-    """Create, specific comment"""
-    queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
-    authentication_classes = [SessionAuthentication]
-
-    def perform_create(self, serializer):
-        account_instance = Account.objects.get(user = self.request.user)
-        return serializer.save(user=account_instance)
-
-
-class StoriCommentsDetail(generics.RetrieveUpdateDestroyAPIView):
-    """ get, update, destroy comment  """
-
-    queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
-    authentication_classes = [SessionAuthentication]
-    
 
 
 class CategoryCreate(generics.ListCreateAPIView):
@@ -94,10 +66,12 @@ class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CategorySerializers
 
 class StoriViewset(viewsets.ModelViewSet):
+    """"blog/stori viewset"""
     serializer_class = BlogSerializer
     queryset = Stori.objects.all()
 
 class CommentViewset(viewsets.ModelViewSet):
+    """comment viewset"""
     serializer_class = CommentSerializer
 
     def get_serializer_context(self):
@@ -124,7 +98,6 @@ class AccountViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
 class Blogviewset(viewsets.ViewSet):
-    """"""
     serializer_class = BlogSerializer
     
 
@@ -141,6 +114,7 @@ class Blogviewset(viewsets.ViewSet):
         return Response(serializer.data)
 
 class BlogCommentViewSet(viewsets.ViewSet):
+    """Comment viewset"""
     serializer_class = CommentSerializer
 
     def list(self, request,pk=None,blog_pk=None,account_pk=None):
