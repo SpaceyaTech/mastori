@@ -50,6 +50,11 @@ jobs:
           DATABASE_DB: djtesting
           DATABASE_PORT: 5432
           DATABASE_HOST: localhost
+          EMAIL_HOST: test
+          EMAIL_PORT: 123
+          EMAIL_HOST_USER: test
+          EMAIL_HOST_PASSWORD: test
+          
         run: |
           python manage.py migrate
           python manage.py test
