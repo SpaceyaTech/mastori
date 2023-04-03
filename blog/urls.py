@@ -5,7 +5,7 @@ from .views import StoriViewset, CommentViewset
 from accounts.views import UserViewSet
 urlpatterns = [
     path('',views.StoriList.as_view()),
-    path('<int:pk>/comments/',views.StoriDetail.as_view(),name="blog-detail"),
+    # path('<int:pk>/comments/',views.StoriDetail.as_view(),name="blog-detail"),
     # path('stori/<int:pk>/publish/', views.StoriPublish.as_view()),
     # path('category/',views.CategoryCreate.as_view(),name="create-category"),
     # path('category/<int:pk>/',views.CategoryDetail.as_view(),name="category-detail"), #update, delete
