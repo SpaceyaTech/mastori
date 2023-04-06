@@ -1,0 +1,11 @@
+{% block subject %}My subject for {{username}}{% endblock %}
+{% block plain %}
+  Hi {{full_name}},
+
+  Hey You! This should work as an example template
+
+      username: {{username}}
+      join date: {{signup_date}}
+
+  Thanks, you rock!
+{% endblock %}

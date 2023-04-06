@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'accounts',
     'blog',
+    'mail',
     'phonenumber_field',
     #Adding the django filters module
     'django_filters', 
@@ -245,4 +246,21 @@ CORS_ALLOW_ALL_ORIGINS = True
 # minimum user's password length during registration
 USER_PASSWORD_LENGTH = 8
 
+# celery configurations
+# By default celery will use Redis as the message broker
+# RabitMQ or AWS Simple Queue can be used as well
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER', 'redis://redis:6379/0')
 
+CELERY_RESULT_BACKEND = os.environ.get('CELERY_BROKER', 'redis://redis:6379/0')
+
+# mail service configuation
+
+TEMPLATED_EMAIL_BACKEND = 'templated_email.backends.vanilla_django.TemplateBackend'
+
+TEMPLATED_EMAIL_FILE_EXTENSION = 'email'
+
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_PORT = env("EMAIL_PORT")
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
