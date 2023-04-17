@@ -65,7 +65,7 @@ class AddUserAccountViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
     throttle_classes = [UserRateThrottle, AccountsRateThrottle]
 
-    #def get_serializer_context(self):
+    def get_serializer_context(self):
         return {'user_id': self.kwargs['user_pk']}
 
     def get_queryset(self):
