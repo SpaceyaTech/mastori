@@ -35,10 +35,10 @@ urlpatterns = [
     path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    path('blog/',include('blog.urls')),
+    path('',include('blog.urls')),
 
 
-    path("", include("accounts.urls")),
+    path("auth/", include("accounts.urls")),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL,
            document_root=settings.MEDIA_ROOT)
