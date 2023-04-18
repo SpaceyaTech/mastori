@@ -106,9 +106,26 @@ To install Mastori, follow these steps:
   ```
 
 - Configure `.env` (refer to `.env.sample`) and set up the database:
+  
+  <details>
+  <summary>Setting up project database in PostgreSQL on Ubuntu</summary>
 
   ```bash
-    cd -
+  # Switch to a directory "postgres" user can access. Avoids 'could not change directory to "/home/username...' error messages.
+  cd /etc
+
+  # Create database user that can create databases
+  sudo -u postgres createuser dbuser --createdb --pwprompt
+
+  # Create project database
+  sudo -u postgres createdb --owner=dbuser dbname
+
+  cd -  # return to project working directory
+  ```
+
+  </details>
+
+  ```bash
   python manage.py migrate
   ```
 
