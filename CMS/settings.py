@@ -180,7 +180,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=15),
     # enables users to remain logged in after given days expire as long as the user stays in the system.
     'ROTATE_REFRESH_TOKENS': True,
