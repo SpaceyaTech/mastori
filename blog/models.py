@@ -22,20 +22,17 @@ class Category(AbstractBaseModel):
     class Meta:
         verbose_name_plural = "Categories"
 
-""" Stori """
-""" stori_status """
-STATUS = (
-    (0,"Draft"),
-    (1,"Published")
-)
 """stori is swahili for story. was thinking of using the slang version 'risto'/'riba' in there.. """
 class Stori(AbstractBaseModel):
+    class Status(models.TextChoices):
+        Draft = "Draft"
+        Published = "Published"
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.CharField(max_length=500, null=True, blank=True)
     content = RichTextUploadingField()
     created_by = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
-    status = models.IntegerField(choices=STATUS, default=0) #"""This here serves to indicate whether a stori has been published or not."""
+    status = models.CharField(max_length=9,choices=Status.choices, default=Status.Draft) #"""This here serves to indicate whether a stori has been published or not."""
     category = models.ForeignKey(Category,on_delete=models.PROTECT)
     
 
@@ -44,7 +41,11 @@ class Stori(AbstractBaseModel):
          
     class Meta:
         verbose_name_plural = "Mastori"
-        
+
+    def get_absolute_url(self):
+        return reverse("blog-detail",kwargs={"pk":self.id})
+
+
 @receiver(pre_save,sender=Stori) #auto populates slug from title for the Stori model
 def auto_slug(sender,instance, **kwargs):
     instance.slug = slugify(instance.title)
@@ -53,7 +54,7 @@ pre_save.connect(auto_slug,sender=Stori)
 
 class Comment(models.Model):
     body = models.TextField()
-    Post_id = models.ForeignKey(Stori,on_delete= models.CASCADE)
+    Post_id = models.ForeignKey(Stori,on_delete= models.CASCADE,related_name="comment")
     user = models.ForeignKey(Account, on_delete= models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     reactions = models.PositiveIntegerField(default=0)
@@ -73,6 +74,8 @@ class Comment(models.Model):
         if self.parent_comment is not None:
             return False
         return True
+    def get_absolute_url(self):
+        return reverse("comments-detail",kwargs={"pk":self.id})
 
 REACTION_TYPE_CHOICES = (
     ('Like', 'Like'),
