@@ -1,6 +1,8 @@
 version: "3.8"
 
 x-environment: &commonEnvironment
+  - DEBUG=${DEBUG}
+  - ALLOWED_HOSTS=${ALLOWED_HOSTS}
   - DATABASE_DB=${DATABASE_DB}
   - DATABASE_USER=${DATABASE_USER}
   - DATABASE_PASSWORD=${DATABASE_PASSWORD}
@@ -53,10 +55,12 @@ services:
   redis:
 
     image: redis:7-alpine
+    restart: always
 
   database:
 
     image: postgres:alpine
+    restart: always
 
     expose:
       - 5432

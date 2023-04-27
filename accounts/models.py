@@ -53,7 +53,7 @@ class User(AbstractUser):
 
 class Account(models.Model):
     # Referencing the customized user
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='account')#Referencing the customized user
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='account')
     account_name = models.CharField(max_length=50, unique= True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
