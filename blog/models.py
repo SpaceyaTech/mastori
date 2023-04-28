@@ -15,7 +15,7 @@ class AbstractBaseModel(models.Model):
 
 # Category
 class Category(AbstractBaseModel):
-    name = models.CharField(max_length = 50)
+    name = models.CharField(max_length=50, unique=True)
     
     def __str__(self):
         return self.name
@@ -49,13 +49,12 @@ class Stori(AbstractBaseModel):
 @receiver(pre_save,sender=Stori) #auto populates slug from title for the Stori model
 def auto_slug(sender,instance, **kwargs):
     instance.slug = slugify(instance.title)
-pre_save.connect(auto_slug,sender=Stori)
 
 
 class Comment(models.Model):
     body = models.TextField()
-    Post_id = models.ForeignKey(Stori,on_delete= models.CASCADE,related_name="comment")
-    user = models.ForeignKey(Account, on_delete= models.CASCADE)
+    stori = models.ForeignKey(Stori,on_delete= models.CASCADE,related_name="comment")
+    account = models.ForeignKey(Account, on_delete= models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     reactions = models.PositiveIntegerField(default=0)
     #make the initial comment parent
@@ -64,7 +63,7 @@ class Comment(models.Model):
         ordering = ['-date_created']
     
     def __str__(self):
-        return 'Comment {} by {}'.format(self.body,self.user.account_name) 
+        return 'Comment {} by {}'.format(self.body,self.account.account_name) 
     
     def child_comment(self):#get all child comments
         return Comment.objects.filter(parent_comment=self)
