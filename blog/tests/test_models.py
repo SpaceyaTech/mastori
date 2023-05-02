@@ -40,19 +40,19 @@ def stori(category, account):
         description= "Testing stori",
         content= "testing using pytest",
         category = category,
-        created_at=account,
+        created_by=account,
         status=0
     )
 
 @pytest.mark.django_db
 def test_create_comment(stori, account):
     comment = Comment.objects.create(
-        Post_id= stori,
-        user= account,
+        stori= stori,
+        account= account,
         body= "This is first comment"
     )
 
     assert Comment.objects.count() == 1
-    assert comment.Post_id == stori
-    assert comment.user == account
+    assert comment.stori == stori
+    assert comment.account == account
     assert comment.body == 'This is first comment'

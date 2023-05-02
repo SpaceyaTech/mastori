@@ -44,7 +44,8 @@ jobs:
       - name: Run Tests
         env:
           DEBUG: False
-          DJANGO_SECRET_KEY: CI_CD_TEST_KEY
+          SECRET_KEY: CI_CD_TEST_KEY
+          ALLOWED_HOSTS: localhost:8000
           DATABASE_USER: postgres
           DATABASE_PASSWORD: postgres
           DATABASE_DB: djtesting
