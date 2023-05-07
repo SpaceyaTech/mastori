@@ -5,7 +5,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 import random
 import time
-import string
+import uuid
 """
 Substituting a custom User by extending the AbstractUser
 Making Users email unique
