@@ -99,14 +99,14 @@ class CommentViewset(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_serializer_context(self):
-        return {"blog_id":self.kwargs["blogs_pk"]}
+        return {"blog_id":self.kwargs["mastori_pk"]}
     
     def get_queryset(self):
-        return Comment.objects.filter(stori=self.kwargs["blogs_pk"])
+        return Comment.objects.filter(stori=self.kwargs["mastori_pk"])
 
     # set post and account in comment created before saving
     def perform_create(self, serializer):
-        post = Stori.objects.get(id=self.kwargs["blogs_pk"])
+        post = Stori.objects.get(id=self.kwargs["mastori_pk"])
         account = Account.objects.get(user=self.request.user)
         serializer.save(post=post, account=account)
 
@@ -155,13 +155,13 @@ class BlogCommentViewset(viewsets.ViewSet):
     serializer_class = CommentSerializer
 
 
-    def list(self, request, blogs_pk=None, accounts_pk=None):
-        queryset = Comment.objects.filter(stori=blogs_pk, account=accounts_pk)
+    def list(self, request, mastori_pk=None, accounts_pk=None):
+        queryset = Comment.objects.filter(stori=mastori_pk, account=accounts_pk)
         serializer = CommentSerializer(queryset, many=True)
         return Response(serializer.data)
     
-    def retrieve(self, request, pk=None, blogs_pk=None, accounts_pk=None):
-        queryset = Comment.objects.filter(pk=pk, stori=blogs_pk, account=accounts_pk)
+    def retrieve(self, request, pk=None, mastori_pk=None, accounts_pk=None):
+        queryset = Comment.objects.filter(pk=pk, stori=mastori_pk, account=accounts_pk)
         comments = get_object_or_404(queryset,pk=pk)
         serializer = CommentSerializer(comments)
         return Response(serializer.data)

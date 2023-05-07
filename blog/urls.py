@@ -18,10 +18,10 @@ urlpatterns = [
 ]
 # blogs/id/comments/id
 router = routers.DefaultRouter()
-router.register('blogs', StoriViewset, basename="blogs")
+router.register('mastori', StoriViewset, basename="mastori")
 
 
-stori_router = routers.NestedDefaultRouter(router, 'blogs', lookup='blogs')
+stori_router = routers.NestedDefaultRouter(router, 'mastori', lookup='mastori')
 stori_router.register('comments', CommentViewset,basename="comments")
 
 # accounts/id/blogs/id/comments/id/
@@ -29,9 +29,9 @@ account_router = routers.DefaultRouter()
 account_router.register("accounts", AccountViewset, basename="accounts")
 
 blog_router = routers.NestedDefaultRouter(account_router, "accounts", lookup="accounts")
-blog_router.register("blogs", BlogViewset, basename="blogs")
+blog_router.register("mastori", BlogViewset, basename="mastori")
 
-comment_router = routers.NestedDefaultRouter(blog_router, "blogs", lookup="blogs")
+comment_router = routers.NestedDefaultRouter(blog_router, "mastori", lookup="mastori")
 comment_router.register("comments", BlogCommentViewset, basename="comments")
 
 # categories/id/
