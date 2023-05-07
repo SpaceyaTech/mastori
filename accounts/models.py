@@ -20,6 +20,7 @@ def generate_verification_code(size=6):
     
 
 class User(AbstractUser):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True, max_length=50)
     phone_number = PhoneNumberField(blank=True, help_text='Contact phone number', null=True , unique= True)
     verification_code = models.CharField(max_length=6, unique=True,default=generate_verification_code())
@@ -52,6 +53,7 @@ class User(AbstractUser):
         return self.verification_code
 
 class Account(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     # Referencing the customized user
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='account')
     account_name = models.CharField(max_length=50, unique= True)

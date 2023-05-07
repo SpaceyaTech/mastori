@@ -5,7 +5,7 @@ from django.utils.text import slugify
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.urls import reverse
-
+import uuid
 class AbstractBaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -14,7 +14,9 @@ class AbstractBaseModel(models.Model):
         abstract = True
 
 # Category
+
 class Category(AbstractBaseModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=50, unique=True)
     
     def __str__(self):
@@ -27,6 +29,7 @@ class Stori(AbstractBaseModel):
     class Status(models.TextChoices):
         Draft = "Draft"
         Published = "Published"
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.CharField(max_length=500, null=True, blank=True)
@@ -52,6 +55,7 @@ def auto_slug(sender,instance, **kwargs):
 
 
 class Comment(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     body = models.TextField()
     stori = models.ForeignKey(Stori,on_delete= models.CASCADE,related_name="comment")
     account = models.ForeignKey(Account, on_delete= models.CASCADE)
