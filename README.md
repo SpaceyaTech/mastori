@@ -1,3 +1,6 @@
+![Screenshot from 2023-04-17 03-32-36](https://github.com/SpaceyaTech/mastori/assets/23496280/e93b1dd9-84c4-4bec-b075-09dd6a3c8ce4)
+
+
 ![Python](https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
 ![postgresql](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
