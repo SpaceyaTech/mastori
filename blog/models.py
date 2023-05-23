@@ -1,11 +1,16 @@
-from django.db import models
-from accounts.models import Account
+import uuid
+
 from ckeditor_uploader.fields import RichTextUploadingField
-from django.utils.text import slugify
+from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.urls import reverse
-import uuid
+
+from accounts.models import Account
+
+from .utils import unique_slug_generator
+
+
 class AbstractBaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -49,9 +54,10 @@ class Stori(AbstractBaseModel):
         return reverse("blog-detail",kwargs={"pk":self.id})
 
 
-@receiver(pre_save,sender=Stori) #auto populates slug from title for the Stori model
-def auto_slug(sender,instance, **kwargs):
-    instance.slug = slugify(instance.title)
+@receiver(pre_save, sender=Stori)
+def auto_slug(sender, instance, **kwargs):
+    """Auto populates slug from title for the Stori model"""
+    instance.slug = unique_slug_generator(instance)
 
 
 class Comment(models.Model):
