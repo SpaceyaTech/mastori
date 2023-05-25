@@ -1,1 +1,1 @@
-web: python manage.py migrate && gunicorn CMS.wsgi --log-file -
+web: python manage.py migrate && gunicorn CMS.wsgi --host 0.0.0.0 --port 8000 --log-file - 
