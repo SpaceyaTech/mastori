@@ -1,1 +1,1 @@
-web: python manage.py migrate && gunicorn CMS.wsgi && python manage.py runserver 0.0.0.0:0 --log-file - 
+web: python manage.py makemigrations && python manage.py migrate && gunicorn CMS.wsgi --log-file - 
