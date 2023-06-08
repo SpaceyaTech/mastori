@@ -32,4 +32,4 @@ pytz==2022.6
 sqlparse==0.4.3
 tomli==2.0.1
 tzdata==2022.6
-whitenoise==4.1.2
+whitenoise==6.4.0
