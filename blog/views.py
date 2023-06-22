@@ -84,7 +84,7 @@ class CategoryViewset(viewsets.ModelViewSet):
 class StoriViewset(viewsets.ModelViewSet):
     """"blog/stori viewset"""
     serializer_class = BlogSerializer
-    queryset = Stori.objects.all()
+    queryset = Stori.objects.filter(status="Published")
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
