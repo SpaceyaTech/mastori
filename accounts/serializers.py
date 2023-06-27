@@ -104,3 +104,21 @@ class UserAccountRegistrationSerializer(serializers.ModelSerializer):
         model = Account
         fields = ['id', 'user', 'confirm_password', 'account_name', 'display_picture', 'bio']
 
+class AddAccountSerializer(serializers.ModelSerializer):
+    """Serializer that enables addition of a new account to an existing user"""
+
+    def create(self, validated_data):
+        user_id = self.context['user_id']
+        account_name = validated_data['account_name']
+        bio = validated_data['bio']
+
+        user = User.objects.get(pk=user_id)
+
+        account = Account.objects.create(user=user, account_name=account_name, bio=bio)
+
+        return account
+        
+    class Meta:
+        model = Account
+        fields = ['id','account_name', 'bio']
+
