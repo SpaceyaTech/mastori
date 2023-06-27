@@ -40,7 +40,7 @@ class UserViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
     """Api View for listing all users and retrieving specific users using their id's"""
 
     serializer_class = UserSerializer
-    permission_classes = [IsAdminUser]
+    #permission_classes = [IsAdminUser]
     throttle_classes = [UserRateThrottle, AccountsRateThrottle]
     
     def get_queryset(self):
@@ -58,3 +58,15 @@ class RegisterAccountViewSet(CreateModelMixin, GenericViewSet):
     throttle_classes = [UserRateThrottle, AccountsRateThrottle]
 
 
+class AddUserAccountViewSet(ModelViewSet):
+    """Api view for a user to add another new account"""
+
+    serializer_class = AddAccountSerializer
+    #permission_classes = [IsAuthenticated]
+    throttle_classes = [UserRateThrottle, AccountsRateThrottle]
+
+    def get_serializer_context(self):
+        return {'user_id': self.kwargs['user_pk']}
+
+    def get_queryset(self):
+        return Account.objects.filter(user_id=self.kwargs['user_pk'])
