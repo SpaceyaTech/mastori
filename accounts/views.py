@@ -50,10 +50,10 @@ class UserViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
         return User.objects.all()
 
 
-class RegisterAccountViewSet(CreateModelMixin, GenericViewSet):
+class RegisterAccountViewSet(ModelViewSet):
     """Api view to be used when a user first registers to the system"""
 
-    queryset = Account.objects.all()
+    queryset = User.objects.all()
     serializer_class = UserAccountRegistrationSerializer
     throttle_classes = [UserRateThrottle, AccountsRateThrottle]
 

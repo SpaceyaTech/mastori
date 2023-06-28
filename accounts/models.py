@@ -26,6 +26,7 @@ class User(AbstractUser):
     verification_code = models.CharField(max_length=6, unique=True,default=generate_verification_code())
     code_generated_at = models.DateTimeField(auto_now_add=True)
     is_verified = models.BooleanField(default=False) # to be set up later in views to change if user verified
+    
     USERNAME_FIELD = 'email'
     
     # add phone number as a requirement while signing up
@@ -43,19 +44,20 @@ class User(AbstractUser):
     
     
     # resets the verification code after every 1hr
-    def get_verification_code(self):
-        now = time.time()
-        elapsed = now - self.code_generated_at.timestamp()
-        if elapsed > 3600: 
-            self.verification_code = generate_verification_code()
-            self.code_generated_at = now
-            self.save
-        return self.verification_code
+    # def get_verification_code(self):
+    #     now = time.time()
+    #     elapsed = now - self.code_generated_at.timestamp()
+    #     if elapsed > 3600: 
+    #         self.verification_code = generate_verification_code()
+    #         self.code_generated_at = now
+    #         self.save
+    #     return self.verification_code
+    
 
 class Account(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     # Referencing the customized user
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='account')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='account')
     account_name = models.CharField(max_length=50, unique= True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

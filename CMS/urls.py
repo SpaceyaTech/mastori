@@ -31,9 +31,8 @@ admin.site.index_title = "Welcome to SpaceYaTech CMS"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path("apiv1/", include('djoser.urls')),
+    path("apiv1/", include('djoser.urls.jwt')),
 
     path('',include('blog.urls')),
 
