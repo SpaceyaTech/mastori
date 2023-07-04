@@ -1,3 +1,15 @@
-.env
-env/
+**/.git
+**/.gitignore
+**/.vscode
+**/coverage
+**/.env
+**/.aws
+**/.ssh
 Dockerfile
+README.md
+contributions.md
+docker-compose.yml
+compose.yml
+**/.DS_Store
+**/venv
+**/env
