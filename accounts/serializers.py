@@ -1,39 +1,10 @@
 from rest_framework import serializers
 from django.db import transaction
-from django.conf import settings
 
 from accounts.models import User, Account
 from djoser.serializers import UserCreateSerializer
 
-
-class AccountDetailSerializer(serializers.ModelSerializer):
-    """Serializer to display account details to be used in the UserSerializer"""
-
-    class Meta:
-        model = Account
-        fields = ['id', 'account_name', 'bio']
-
-
-class UserSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
-    number_of_accounts = serializers.IntegerField(read_only=True) #Added field to display the number of accounts that a user has.
-    account = AccountDetailSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = User
-        fields = [
-            'id', 
-            'first_name', 
-            'last_name', 
-            'username', 
-            'email', 
-            'phone_number', 
-            'password', 
-            'number_of_accounts', 
-            'account'
-        ]
-
-
+#Account details to be used when creating a user
 class AccountDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
