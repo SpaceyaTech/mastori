@@ -275,7 +275,7 @@ EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 DJOSER = {
     'SERIALIZERS': {
         'user_create': 'accounts.serializers.UserAccountRegistrationSerializer',
-        'user': 'accounts.serializers.UserAccountRegistrationSerializer',
+        'user': 'accounts.serializers.CustomUserSerializer',
         'current_user': 'accounts.serializers.UserAccountRegistrationSerializer',
         
     },
