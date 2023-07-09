@@ -33,9 +33,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DEBUG", default=False)
+DEBUG = True
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -47,25 +47,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Adding djangorestframework to the poject
 
+    # Third party libraries
+    # Adding djangorestframework to the poject
     'rest_framework',
-    'accounts',
-    'blog',
-    'mail',
     'phonenumber_field',
     #Adding the django filters module
     'django_filters', 
     # for blacklisting used refresh token
     'rest_framework_simplejwt.token_blacklist',
-    #Adding a richtext editor
+    # Adding a richtext editor
     'ckeditor',
     'ckeditor_uploader', 
-
     # cors
     "corsheaders",
-    
     "whitenoise.runserver_nostatic",
+    "djoser",
+
+    #Applications
+    'accounts',
+    'blog',
+    'mail',
 ]
 
 MIDDLEWARE = [
@@ -269,3 +271,13 @@ EMAIL_PORT = env("EMAIL_PORT")
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'accounts.serializers.UserAccountRegistrationSerializer',
+        'user': 'accounts.serializers.CustomUserSerializer',
+        'current_user': 'accounts.serializers.UserAccountRegistrationSerializer',
+        
+    },
+    "TOKEN_MODEL": None,
+}
