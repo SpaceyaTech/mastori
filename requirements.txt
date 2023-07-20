@@ -24,6 +24,7 @@ django-storages==1.13.2
 django-templated-email==3.0.1
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.2
+djoser==2.2.0
 drf-nested-routers==0.93.4
 exceptiongroup==1.1.0
 gunicorn==20.1.0
@@ -51,4 +52,7 @@ six==1.16.0
 sqlparse==0.4.3
 tomli==2.0.1
 tzdata==2022.6
+urllib3==1.26.14
+vine==5.0.0
+wcwidth==0.2.6
 whitenoise==6.4.0

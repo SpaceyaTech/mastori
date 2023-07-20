@@ -35,7 +35,7 @@ SECRET_KEY = 'django-insecure-0(d^jk^v&wtq5jnh4sz8a+5q_rd-w6zm(l=)n$)*2hl1mcdlqb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = ['https://mastori-backend-production.up.railway.app']
 
@@ -48,27 +48,32 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Adding djangorestframework to the poject
 
+    # Third party libraries
+    # Adding djangorestframework to the poject
     'rest_framework',
-    'accounts',
-    'blog',
     'phonenumber_field',
     #Adding the django filters module
     'django_filters', 
     # for blacklisting used refresh token
     'rest_framework_simplejwt.token_blacklist',
-    #Adding a richtext editor
+    # Adding a richtext editor
     'ckeditor',
     'ckeditor_uploader', 
-
     # cors
     "corsheaders",
-    # whitenoise
-    'whitenoise.runserver_nostatic',
+    "whitenoise.runserver_nostatic",
+    "djoser",
+
+    #Applications
+    'accounts',
+    'blog',
+    'mail',
 ]
 
 MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -154,6 +159,9 @@ PHONENUMBER_DEFAULT_REGION = 'KE'
 STATIC_URL = 'static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+#storages
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -268,3 +276,12 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'accounts.serializers.UserAccountRegistrationSerializer',
+        'user': 'accounts.serializers.CustomUserSerializer',
+        'current_user': 'accounts.serializers.UserAccountRegistrationSerializer',
+        
+    },
+    "TOKEN_MODEL": None,
+}

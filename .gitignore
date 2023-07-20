@@ -2,6 +2,7 @@ Dockerfile
 
 # Byte-compiled / optimized / DLL files
 .vscode/
+.history
 __pycache__/
 *.pyc
 *.py[cod]

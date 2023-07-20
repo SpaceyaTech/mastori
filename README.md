@@ -1,3 +1,6 @@
+![Screenshot from 2023-04-17 03-32-36](https://github.com/SpaceyaTech/mastori/assets/23496280/e93b1dd9-84c4-4bec-b075-09dd6a3c8ce4)
+
+
 ![Python](https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
 ![postgresql](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
@@ -112,7 +115,7 @@ shows a list of all available blog posts (Stori/Mastori)
 The model naming is abitrary and can be subject to change if need be
 Ther is also need to filter out the various blogposts in relation ti their tittle or date posted hence the filter
 
-![Screenshot from 2023-01-03 00-59-16](https://user-images.githubusercontent.com/23496280/210282497-96bb8b6f-544d-4454-8b01-e3aea9b8745d.png)
+![image](https://github.com/SpaceyaTech/mastori/assets/23496280/d77f3663-5ebc-4420-964c-7d11de44695d)
 
 
 # Contributing

@@ -1,13 +1,12 @@
 from rest_framework import serializers
 
-from accounts.models import Account
 from blog.models import Stori, Comment, Category
 
 class CommentSerializer(serializers.ModelSerializer):
     """comments serializer"""
     class Meta:
         model = Comment
-        fields = "__all__"
+        fields = ['id', 'account', 'stori', 'body']
         read_only_fields = ("account", "stori")
 
 
@@ -24,7 +23,7 @@ class BlogSerializer(serializers.ModelSerializer):
     # comment = CommentSerializer(many=True,read_only=True)
     class Meta:
         model = Stori
-        fields = "__all__"
+        fields = ['id', 'title', 'slug', 'description', 'content', 'status', 'category']
         read_only_fields = ("slug",)
     
         

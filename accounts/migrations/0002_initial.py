@@ -7,6 +7,7 @@ from django.db import migrations, models
 import django.db.models.deletion
 import django.utils.timezone
 import phonenumber_field.modelfields
+import uuid
 
 
 class Migration(migrations.Migration):
@@ -21,15 +22,6 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="User",
             fields=[
-                (
-                    "id",
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
-                ),
                 ("password", models.CharField(max_length=128, verbose_name="password")),
                 (
                     "last_login",
@@ -94,6 +86,15 @@ class Migration(migrations.Migration):
                         default=django.utils.timezone.now, verbose_name="date joined"
                     ),
                 ),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
                 ("email", models.EmailField(max_length=50, unique=True)),
                 (
                     "phone_number",
@@ -149,11 +150,11 @@ class Migration(migrations.Migration):
             fields=[
                 (
                     "id",
-                    models.BigAutoField(
-                        auto_created=True,
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
                         primary_key=True,
                         serialize=False,
-                        verbose_name="ID",
                     ),
                 ),
                 ("account_name", models.CharField(max_length=50, unique=True)),
