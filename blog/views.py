@@ -41,19 +41,18 @@ class StoriViewset(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         # set account of logged in user to blog created before saving
-        account = Account.objects.get(user=self.request.user)
-        serializer.save(created_by=account)
+        #account = Account.objects.get(user=self.request.user)
+        serializer.save(created_by__user=self.request.user)
 
 class DraftStoriViewset(viewsets.ModelViewSet):
     """"draft Stori viewset"""
     serializer_class = BlogSerializer
-    queryset = Stori.objects.filter(status="Draft")
-    permission_classes = [IsAuthenticatedOrReadOnly, IsBlogOwnerOrReadOnly]
+    http_method_names = ["get","put","delete","patch"]
+    
+    def get_queryset(self):
+        queryset = Stori.objects.filter(status="Draft", created_by__user=self.request.user)
+        return queryset
 
-    def perform_create(self, serializer):
-        # set account of logged in user to blog created before saving
-        account = Account.objects.get(user=self.request.user)
-        serializer.save(created_by=account)
 
 
 class CommentViewset(viewsets.ModelViewSet):
