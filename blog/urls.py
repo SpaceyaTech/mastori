@@ -2,10 +2,11 @@ from rest_framework_nested import routers
 
 from blog import views
 
-from .views import (CategoryViewset, CommentViewset, StoriViewset)
+from .views import (CategoryViewset, CommentViewset, StoriViewset,DraftStoriViewset)
 
 
 router = routers.DefaultRouter()
+router.register('mastori/drafts', DraftStoriViewset, basename="mastori_draft")
 router.register('mastori', StoriViewset, basename="mastori")
 router.register("categories", CategoryViewset, basename="categories")
 
