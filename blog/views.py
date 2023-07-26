@@ -48,6 +48,7 @@ class DraftStoriViewset(viewsets.ModelViewSet):
     """"draft Stori viewset"""
     serializer_class = BlogSerializer
     http_method_names = ["get","put","delete","patch"]
+    permission_classes = [IsAuthenticated]
     
     def get_queryset(self):
         queryset = Stori.objects.filter(status="Draft", created_by__user=self.request.user)
