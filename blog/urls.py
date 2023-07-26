@@ -6,8 +6,8 @@ from .views import (CategoryViewset, CommentViewset, StoriViewset,DraftStoriView
 
 
 router = routers.DefaultRouter()
+router.register('mastori/drafts', DraftStoriViewset, basename="mastori_draft")
 router.register('mastori', StoriViewset, basename="mastori")
-router.register('stori/drafts', DraftStoriViewset, basename="mastori_draft")
 router.register("categories", CategoryViewset, basename="categories")
 
 
