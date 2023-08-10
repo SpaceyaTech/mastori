@@ -1,5 +1,6 @@
 from django.test import TestCase
 from rest_framework.test import APITestCase
+from django.urls import reverse
 from blog.models import Stori, Category
 import json
 
@@ -22,7 +23,8 @@ class TestStoriList(TestCase):
     only published blogs are returned
     """
     def test_only_published_stori_returned(self):
-        response = self.client.get("/mastori/")
+        mastori_url = reverse('mastori-list')
+        response = self.client.get(mastori_url)
         
         self.assertEqual(response.status_code, 200)
         mastori_json = json.loads(response.content)
