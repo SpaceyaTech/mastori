@@ -26,9 +26,12 @@ class CategoryViewset(viewsets.ModelViewSet):
     def get_permissions(self):
         # admin is allowed to destroy and update a category
         if self.action == 'destroy' or self.action == "update":
-            self.permission_classes = [IsAdminUser]
-        # anyone can create, retrieve and list all categories
-        elif self.action == 'retrieve' or self.action == "create" or self.action == "list":
+            self.permission_classes = [IsAdminUser, IsAuthenticated]
+        # anyone can create a category if logged in
+        elif self.action == "create":
+            self.permission_classes = [IsAuthenticated]
+        # anyone can retrieve and list all categories
+        elif self.action == 'retrieve' or self.action == "list":
             self.permission_classes = [AllowAny]
         return super().get_permissions()
     
