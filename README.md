@@ -62,6 +62,12 @@ The project is designed to help developers build their own blogging website or a
     /account/id/stori/id/reaction/id/
 ```
 
+## Documentation
+```sql
+    /schema/docs/
+
+```
+
 # Features
 Mastori provides the following features:
 
