@@ -9,6 +9,9 @@ from rest_framework.permissions import (AllowAny, IsAdminUser, IsAuthenticated,
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
 
+from drf_spectacular.utils import extend_schema,OpenApiParameter
+from drf_spectacular.types import OpenApiTypes
+
 from accounts.models import Account
 from blog.filters import StoriFilter
 from blog.models import Category, Comment, Stori
@@ -32,7 +35,7 @@ class CategoryViewset(viewsets.ModelViewSet):
             self.permission_classes = [AllowAny]
         return super().get_permissions()
     
-
+@extend_schema(responses=BlogSerializer)
 class StoriViewset(viewsets.ModelViewSet):
     """"blog/stori viewset"""
     serializer_class = BlogSerializer
@@ -44,6 +47,7 @@ class StoriViewset(viewsets.ModelViewSet):
         #account = Account.objects.get(user=self.request.user)
         serializer.save(created_by__user=self.request.user)
 
+@extend_schema(responses=BlogSerializer, parameters=[OpenApiParameter(name="id", type=OpenApiTypes.INT)])
 class DraftStoriViewset(viewsets.ModelViewSet):
     """"draft Stori viewset"""
     serializer_class = BlogSerializer
@@ -54,8 +58,7 @@ class DraftStoriViewset(viewsets.ModelViewSet):
         queryset = Stori.objects.filter(status="Draft", created_by__user=self.request.user)
         return queryset
 
-
-
+@extend_schema(responses=CommentSerializer, parameters=[ OpenApiParameter(name="mastori_pk", type=OpenApiTypes.INT)])
 class CommentViewset(viewsets.ModelViewSet):
     """comment viewset"""
     serializer_class = CommentSerializer
