@@ -52,6 +52,10 @@ INSTALLED_APPS = [
     # Adding djangorestframework to the poject
     'rest_framework',
     'phonenumber_field',
+    'drf_spectacular',
+    'rest_framework_swagger',
+
+
     #Adding the django filters module
     'django_filters', 
     # for blacklisting used refresh token
@@ -175,6 +179,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+
     'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.throttling.UserRateThrottle',
         'blog.throttles.BlogRateThrottle',
@@ -218,6 +225,14 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+
+# Spectatular settings
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Mastori',
+    'DESCRIPTION': 'Mastori is a community-driven open-source project that aims to provide a simple and efficient blogging platform built with the Django Rest Framework. ',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
 }
 
 # CKEDITOR configurations
