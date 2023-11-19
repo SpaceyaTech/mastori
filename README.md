@@ -175,4 +175,4 @@ Mastori is licensed under the MIT License. See LICENSE for more information.
 [Nested Comments by:](https://github.com/SpaceyaTech/Team-Rio-Django/wiki/Nested-Comments) [Fredrick](@aibunny)
 
 # Contributors 
-[![Contributors](https://contrib.rocks/image?repo=SpaceyaTech/blog)](https://github.com/SpaceyaTech/blog/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=SpaceyaTech/mastori)](https://github.com/SpaceyaTech/mastori/graphs/contributors)
