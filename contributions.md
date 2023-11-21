@@ -54,9 +54,31 @@ Read more on [git and GitHub](https://docs.github.com/en/get-started/quickstart/
 
 **4. Create a Virtual Environment**
 
-> It is suggested to have a dedicated virtual environment for each Django project, and one way to manage a virtual environment is [pipenv](https://pypi.org/project/pipenv/) or venv, which is included in [Python](https://www.python.org/).
+> It is suggested to have a dedicated virtual environment for each Django project, and one way to manage a virtual environment is [Poetry](https://python-poetry.org/docs/master/), [pipenv](https://pypi.org/project/pipenv/) or venv, which is included in [Python](https://www.python.org/).
 
+**4.1 Poetry**
+If using Poetry, simply run the following command to create a virtual environment:
+```bash
+poetry shell
+```
+This creates your virtual environment and activates it.
 
+Install dependencies in the `pyproject.toml` file by running the following command:
+```bash
+poetry install
+```
+
+To add a new dependency, run the following command:
+```bash
+poetry add <package-name>
+```
+
+To export the dependencies to requirements.txt, run the following command:
+```bash
+poetry export -f requirements.txt --without-hashes > requirements.txt
+```
+
+**4.2 Venv**
 With venv, you can create a virtual environment by typing this in the command prompt, remember to navigate to where you want to create your project.
 
 Windows:
@@ -91,7 +113,7 @@ Unix/MacOS:
 
 > ***Note***: You must activate the virtual environment every time you open the command prompt to work on your project.
 
-### Install dependencies
+#### Install dependencies
 Ensure you have python running on your machine.
 
 ```bash
