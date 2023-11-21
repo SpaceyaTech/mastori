@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "mastori"
+version = "0.1.0"
+description = "Mastori is a community-driven open-source project that aims to provide a simple and efficient blogging platform built with the Django Rest Framework."
+authors = ["SpaceYaTech"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = "^4.2.6"
+djangorestframework = "^3.14.0"
+djoser = "^2.2.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
