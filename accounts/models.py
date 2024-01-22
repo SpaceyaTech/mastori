@@ -1,7 +1,9 @@
 from django.conf import settings
+from django.http import Http404
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser,BaseUserManager
 from phonenumber_field.modelfields import PhoneNumberField
+from django.core.exceptions import ObjectDoesNotExist
 
 import random
 import time
@@ -19,6 +21,16 @@ def generate_verification_code(size=6):
     return ''.join(str(random.randint(0,9)) for i in range(size))
     
 
+"""Gets object by id"""
+class UserManager(BaseUserManager):
+    def get_object_bv_id(self, id):
+    
+    try:
+        instance = self.get(id=id)
+        return instance
+    except (ObjectDoesNotExist, ValueError, TypeError):
+        return Http404
+
 class User(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True, max_length=50)
@@ -34,6 +46,7 @@ class User(AbstractUser):
     # add phone number as a requirement while signing up
     REQUIRED_FIELDS = ['first_name', 'last_name', 'username', 'phone_number']
 
+    objects = UserManager()
     def __str__(self) -> str:
         return f'{self.first_name} {self.last_name}'
 
@@ -65,6 +78,7 @@ class Account(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     display_picture = models.ImageField(default='blank-profile-picture.png', upload_to='profile_images')
     bio = models.TextField(blank=True, null=True)
+    objects = UserManager()
 
     def __str__(self) -> str:
         return self.account_name
