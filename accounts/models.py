@@ -1,7 +1,9 @@
 from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from phonenumber_field.modelfields import PhoneNumberField
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404
 
 import random
 import time
@@ -13,6 +15,15 @@ Adding extra attributes that are not present in the default User model(phone_num
 USERNAME_FIELD - changing login to use email rather than username.
 REQUIRED_FIELDS - the required fields to create a superuser
 """
+
+"""Get objects by id"""
+class UserManager(BaseUserManager):
+    def get_object_by_id(self, id):
+        try:
+            instance = self.get(id=id)
+            return instance
+        except (ObjectDoesNotExist, ValueError, TypeError):
+            return Http404
 
 # Generate six digit random code
 def generate_verification_code(size=6): 
@@ -33,6 +44,8 @@ class User(AbstractUser):
     
     # add phone number as a requirement while signing up
     REQUIRED_FIELDS = ['first_name', 'last_name', 'username', 'phone_number']
+
+    objects = UserManager()
 
     def __str__(self) -> str:
         return f'{self.first_name} {self.last_name}'
@@ -65,6 +78,8 @@ class Account(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     display_picture = models.ImageField(default='blank-profile-picture.png', upload_to='profile_images')
     bio = models.TextField(blank=True, null=True)
+
+    objects = UserManager()
 
     def __str__(self) -> str:
         return self.account_name
