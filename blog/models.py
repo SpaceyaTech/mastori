@@ -41,6 +41,7 @@ class Stori(AbstractBaseModel):
     content = RichTextUploadingField()
     created_by = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
     status = models.CharField(max_length=9,choices=Status.choices, default=Status.Draft) #"""This here serves to indicate whether a stori has been published or not."""
+    featured = models.BooleanField(default=False) #"""This here serves to indicate whether a stori is featured or not."""
     category = models.ForeignKey(Category,on_delete=models.PROTECT)
     
 

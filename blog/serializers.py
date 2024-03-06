@@ -23,7 +23,7 @@ class BlogSerializer(serializers.ModelSerializer):
     # comment = CommentSerializer(many=True,read_only=True)
     class Meta:
         model = Stori
-        fields = ['id', 'title', 'slug', 'description', 'content', 'status', 'category']
+        fields = ['id', 'title', 'slug', 'description', 'content', 'status', 'featured', 'category']
         read_only_fields = ("slug",)
     
         
