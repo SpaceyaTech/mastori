@@ -12,7 +12,7 @@ import secrets
 import unittest
 from unittest.mock import call, patch
 
-from accounts.models import generate_verification_code
+from accounts.models import _generate_verification_code
 
 
 BASE_MODULE: str = "accounts.models"
@@ -41,7 +41,7 @@ class VerificationCodeTestCase(unittest.TestCase):
         for length in invalid_lengths:
             # Then
             with self.assertRaises(ValueError):
-                generate_verification_code(size=length)  # When
+                _generate_verification_code(size=length)  # When
 
     def test_should_securely_generate_user_verification_code(self) -> None:
         # Given
@@ -53,7 +53,7 @@ class VerificationCodeTestCase(unittest.TestCase):
         # When
         with patch(f"{BASE_MODULE}.secrets", autospec=True) as mock_secrets_lib:
             mock_secrets_lib.choice.side_effect = choice_side_effect
-            actual = generate_verification_code(size=length)
+            actual = _generate_verification_code(size=length)
 
         # Then
         mock_secrets_lib.choice.assert_has_calls([call(sequence)] * length)
